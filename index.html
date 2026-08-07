@@ -1,0 +1,2613 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Hydraulic_Jack_127_Training</title>
+<style>
+:root{--bg:#111820;--panel:#17212b;--panel2:#202b37;--text:#e9eef4;--muted:#aab6c4;--accent:#f0b84e;--blue:#76b7ff;--green:#6bbf59;--red:#e56b6f;--line:rgba(255,255,255,.14)}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#0e151d,#141c25);color:var(--text);font-family:Arial,Helvetica,sans-serif} .app{min-height:100vh;display:block}.canvasWrap{position:relative;border-right:0;min-width:0;height:100vh;overflow:hidden}canvas{display:block;width:100%;height:100vh;touch-action:none;cursor:default;transform-origin:center center;transition:transform .12s ease}.canDrag{cursor:grab}.dragging{cursor:grabbing!important}.note{position:absolute;left:14px;bottom:12px;right:14px;background:rgba(0,0,0,.40);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px 12px;font-size:12px;line-height:1.45;color:#d8e0ea;pointer-events:none}.side{display:none}.card{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:12px;margin:0 0 12px}.title{font-weight:800;font-size:17px;margin:0 0 5px}.sub{color:var(--muted);font-size:12px;line-height:1.35}.row{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid rgba(255,255,255,.08);padding:6px 0;font-size:13px}.row:last-child{border-bottom:0}.row strong{color:#fff}.status{border:1px solid rgba(255,255,255,.10);border-radius:10px;padding:9px;margin-top:8px;font-size:13px;line-height:1.35}.locked{border-color:rgba(229,107,111,.42);color:#ffd6d8;background:rgba(229,107,111,.08)}.free{border-color:rgba(107,191,89,.42);color:#dcffd7;background:rgba(107,191,89,.08)}.pressure{border-color:rgba(118,183,255,.42);color:#d9ecff;background:rgba(118,183,255,.08)}label{display:block;margin:8px 0 4px;color:#dbe3ed;font-size:13px;font-weight:700}input[type=range]{width:100%}button{border:1px solid rgba(255,255,255,.14);background:#273342;color:#f5f8fb;border-radius:9px;padding:8px 9px;margin:4px 3px 4px 0;font-weight:700;cursor:pointer;font-size:12px}button:hover{background:#324052}button:disabled{opacity:.45;cursor:not-allowed}.primary{background:#354963}.ok{background:#2d4b34}.warn{background:#4c3439}.pill{display:inline-block;margin:2px 3px 2px 0;padding:3px 7px;border-radius:999px;background:rgba(240,184,78,.14);border:1px solid rgba(240,184,78,.28);color:#f4c86d;font-size:12px}.small{font-size:12px;color:var(--muted);line-height:1.4}.topRead{position:absolute;left:14px;top:12px;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:8px 11px;font-size:13px;pointer-events:none}.screenPanel{position:absolute;left:14px;top:58px;display:grid;grid-template-columns:repeat(2,minmax(160px,1fr));gap:6px;width:min(460px,calc(100% - 28px));background:rgba(0,0,0,.42);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:8px 10px 10px;backdrop-filter:blur(2px)}.screenPanel .manualSequence{grid-column:1/-1;display:flex;align-items:center;gap:9px;padding:1px 0 7px;border-bottom:1px solid rgba(255,255,255,.12);margin-bottom:2px}.screenPanel .sequenceNo{display:grid;place-items:center;width:32px;height:32px;flex:0 0 32px;border-radius:50%;background:var(--accent);color:#111820;font-size:17px;font-weight:900}.screenPanel .sequenceTitle{font-size:12px;font-weight:800;color:#f2f5f8;line-height:1.22}.screenPanel .sequenceRef{font-size:9px;color:var(--muted);line-height:1.25;margin-top:2px}.screenPanel .label{grid-column:1/-1;font-size:11px;font-weight:800;color:#dbe3ed;margin-bottom:2px}.screenPanel button{margin:0;padding:8px 10px;width:100%;text-align:center}.screenPanel .mini{font-size:11px;padding:7px 9px}.screenPanel .active{box-shadow:0 0 0 1px rgba(255,255,255,.24) inset;background:#41536b}.screenPanel .wide{grid-column:1/-1}.screenPanel .stepBtn{text-align:left;line-height:1.25;min-height:38px}.screenPanel .stepBtn.current{outline:2px solid var(--accent);background:#4a3c24}.screenPanel .stepBtn.done{background:#294333;border-color:rgba(107,191,89,.45)}.screenPanel .sequenceProgress{grid-column:1/-1;padding:7px 9px;border-radius:9px;background:rgba(118,183,255,.10);border:1px solid rgba(118,183,255,.28);font-size:11px;line-height:1.35;color:#d9ecff}.screenPanel .manualStep{border-style:dashed}.screenPanel .holdStep{user-select:none;touch-action:none}.screenPanel .counter{font-variant-numeric:tabular-nums;color:#ffe29a}.screenPanel .operatorNote{grid-column:1/-1;font-size:10px;line-height:1.3;color:#dce5ef;padding:5px 7px;border-radius:8px;background:rgba(240,184,78,.09);border:1px solid rgba(240,184,78,.23)}.screenPanel .helpBtn{grid-column:1/-1;background:#3b2f1d;border-color:rgba(240,184,78,.55);text-align:center}.screenPanel .helpBtn.on{background:#72531f;color:#fff4d2;box-shadow:0 0 0 2px rgba(240,184,78,.25) inset}.screenPanel .magnifierBtn{grid-column:1/-1;text-align:center;background:#263b4c;border-color:rgba(118,183,255,.50)}.screenPanel .magnifierBtn.on{background:#23556f;color:#e4f6ff;box-shadow:0 0 0 2px rgba(118,183,255,.22) inset}.screenPanel .magnifierBtn.off{background:#3a4047;color:#c9d1da}.screenPanel .restartBtn{grid-column:1/-1;background:#303a46;border-color:rgba(255,255,255,.24);text-align:center}.screenPanel .restartBtn:hover{background:#3b4755}.screenPanel.noHelp .operatorNote{display:none}.screenPanel.noHelp .sequenceProgress{color:#cbd5df;background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16)}@media(max-width:980px){.app{display:block}.canvasWrap{height:100vh}canvas{height:100vh}.screenPanel{top:64px;width:min(460px,calc(100% - 20px));left:10px}}
+
+/* Hydraulic_Jack_127_Training: retains V126 training logic and applies operator-adjustable whole-screen scaling from 70% to 130%. */
+.screenPanel{display:none!important}
+.gangPanel{position:absolute;left:14px;top:58px;width:min(470px,calc(100% - 28px));background:rgba(0,0,0,.72);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:10px;backdrop-filter:blur(3px);z-index:8}
+.gangHeader{display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid rgba(255,255,255,.14);padding-bottom:8px;margin-bottom:8px}.gangTitle{font-size:14px;font-weight:900}.gangSub{font-size:10px;color:var(--muted);margin-top:2px}.gangPressure{font-variant-numeric:tabular-nums;font-size:20px;font-weight:900;color:#d9ecff;white-space:nowrap}.leaderCommand{padding:10px;border-radius:10px;background:rgba(118,183,255,.10);border:1px solid rgba(118,183,255,.35);font-size:13px;line-height:1.4;min-height:58px}.leaderCommand strong{display:block;color:#fff4d2;margin-bottom:3px}.gangGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin:8px 0}.jackStatus{padding:6px 5px;border-radius:8px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.05);text-align:center;font-size:10px;line-height:1.25}.jackStatus b{display:block;font-size:11px}.jackStatus.work{border-color:rgba(118,183,255,.45);color:#d9ecff}.jackStatus.ok{border-color:rgba(107,191,89,.55);background:rgba(107,191,89,.10);color:#dcffd7}.jackStatus.alert{border-color:rgba(229,107,111,.65);background:rgba(229,107,111,.11);color:#ffd6d8}.workflowSelector{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:0 0 9px}.workflowSelector button{margin:0;min-height:46px;font-size:12px;letter-spacing:.2px;background:#26323f;border-color:rgba(255,255,255,.22)}.workflowSelector button.active{background:#6a4c16;border-color:rgba(240,184,78,.82);color:#fff4d2;box-shadow:0 0 0 2px rgba(240,184,78,.22) inset}.workflowSelector button.tight.active{background:#2d4b34;border-color:rgba(107,191,89,.72);color:#dcffd7;box-shadow:0 0 0 2px rgba(107,191,89,.18) inset}.voiceControls{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:0 0 9px}.voiceControls button{margin:0;min-height:34px;font-size:11px;background:#263b4c;border-color:rgba(118,183,255,.50)}.voiceControls button.on{background:#23556f;color:#e4f6ff;box-shadow:0 0 0 2px rgba(118,183,255,.22) inset}.voiceControls button.off{background:#3a4047;color:#c9d1da}.viewControls{display:grid;grid-template-columns:1fr auto 1fr;gap:7px;align-items:center;margin:0 0 9px}.viewControls button{margin:0;min-height:34px;font-size:11px;background:#303a46;border-color:rgba(255,255,255,.24)}.viewControls button:hover{background:#3b4755}.viewScaleOut{min-width:58px;text-align:center;font-variant-numeric:tabular-nums;font-size:12px;font-weight:900;color:#eaf4ff;padding:8px 6px;border-radius:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14)}.gangControls{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.gangControls button{margin:0;min-height:44px;line-height:1.2}.gangControls .confirmBtn{grid-column:1/-1;background:#6a4c16;border-color:rgba(240,184,78,.78);font-size:13px;min-height:48px}.gangControls .confirmBtn.ready{background:#7a5a1d;box-shadow:0 0 0 2px rgba(240,184,78,.22) inset}.gangControls .confirmBtn.alert{background:#71363a;border-color:rgba(229,107,111,.8)}.safetyControls{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:7px 0 0}.safetyControls button{margin:0;min-height:46px;font-size:12px;line-height:1.2}.safetyControls .reportProblemBtn{background:#5b421e;border-color:rgba(240,184,78,.76);color:#fff1c7}.safetyControls .reportProblemBtn:hover{background:#6b4d21}.safetyControls .emergencyStopBtn{background:#7a252b;border-color:rgba(255,105,110,.92);color:#fff;font-size:13px;box-shadow:0 0 0 1px rgba(255,255,255,.08) inset}.safetyControls .emergencyStopBtn:hover{background:#922d34}.safetyControls button:disabled{opacity:.38}.gangMessage{margin-top:7px;padding:7px 8px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);font-size:10px;line-height:1.35;color:#dbe3ed}.gangMessage.error{border-color:rgba(229,107,111,.6);color:#ffd6d8}.gangMessage.success{border-color:rgba(107,191,89,.55);color:#dcffd7}.gangCounter{font-variant-numeric:tabular-nums;color:#ffe29a;font-weight:800}
+@media(max-width:980px){.gangPanel{left:10px;top:64px;width:min(470px,calc(100% - 20px))}.gangGrid{grid-template-columns:repeat(4,1fr)}}
+
+</style>
+
+<meta name="theme-color" content="#111820" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Hydraulic Jack" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png" />
+
+</head>
+<body>
+<div class="app">
+  <div class="canvasWrap">
+    <canvas id="c"></canvas>
+    <div class="topRead" id="topRead">Pressure 0 bar · LOCKED</div>
+    <div class="screenPanel" id="screenPanel">
+      <div class="manualSequence" aria-label="Manual procedure">
+        <span class="sequenceNo" id="sequenceNo">10</span>
+        <div>
+          <div class="sequenceTitle" id="sequenceTitle">Cylinder Cover Loosening<br>Hydraulic Tools — Dismantling</div>
+          <div class="sequenceRef" id="sequenceRef">Work Card 2265-0301-0026 · Hydraulic Tools 7665-0101-0006</div>
+        </div>
+      </div>
+      <div class="label" id="sequenceLabel">Dismantling sequence</div>
+      <div id="sequenceProgress" class="sequenceProgress">HELP OFF — no next-step guidance and no highlighting of completed targets.</div>
+      <button id="helpBtn" type="button" class="mini helpBtn">HELP: OFF</button>
+      <button id="magnifierToggleBtn" type="button" class="mini magnifierBtn on">MAGNIFIER: ON</button>
+      <button id="modeLoosenBtn" type="button" class="mini">Unscrew nut</button>
+      <button id="modeTightenBtn" type="button" class="mini">Screw nut</button>
+      <button id="scPlaceNut" data-step="1" class="mini wide stepBtn">1. Place nut fully onto stud</button>
+      <button id="scPlaceHyd" data-step="1" class="mini wide stepBtn">1. Screw hydraulic jack fully onto stud</button>
+      <button id="scConnect" data-step="2" class="mini stepBtn">2. Connect high-pressure hoses</button>
+      <button id="scBleed" data-step="3" class="mini stepBtn">3. Bleed / Piston zero</button>
+      <button id="scBackoffHyd" data-step="4" class="mini wide stepBtn manualStep">4. Manually screw / unscrew hydraulic jack</button>
+      <button id="scPumpStart" data-step="5" class="primary mini wide stepBtn holdStep">5. Increase oil pressure</button>
+      <button id="scLoosenNut5" data-step="6" class="ok mini wide stepBtn manualStep">6. Manually tighten / loosen nut</button>
+      <button id="scPumpStop" data-step="7" class="warn mini wide stepBtn holdStep">7. Lower oil pressure</button>
+      <button id="scDisconnect" data-step="8" class="mini wide stepBtn">8. Disconnect high-pressure hoses</button>
+      <button id="scUnscrewHyd" data-step="9" class="mini stepBtn">9. Automatically unscrew and remove hydraulic jack</button>
+      <button id="scUnscrewNut" data-step="10" class="mini stepBtn">10. Automatically unscrew and remove nut</button>
+      <div id="operatorNote" class="operatorNote">HELP: before pressurising, unscrew the hydraulic jack 6 holes (3/4 turn) to create clearance. Increase the oil pressure above 2250 bar. Unscrew the nut 5–7 holes with the tommy bar. Hold the pressure buttons for pressure change.</div>
+      <div style="display:none"><button id="scSetNut"></button></div>
+    </div>
+
+    <div class="gangPanel" id="gangPanel">
+      <div class="workflowSelector" aria-label="Procedure selection">
+        <button id="gangLoosenWorkflowBtn" type="button">UNSCREWING PROCEDURE</button>
+        <button id="gangTightenWorkflowBtn" type="button" class="tight">SCREWING PROCEDURE</button>
+      </div>
+      <div class="voiceControls" aria-label="Team Leader voice controls">
+        <button id="teamVoiceToggleBtn" type="button" class="on">TEAM LEADER VOICE: ON</button>
+        <button id="teamVoiceRepeatBtn" type="button">REPEAT TEAM LEADER COMMAND</button>
+      </div>
+      <div class="viewControls" aria-label="Screen size controls">
+        <button id="viewScaleDownBtn" type="button">SCREEN −</button>
+        <div id="viewScaleOut" class="viewScaleOut">100%</div>
+        <button id="viewScaleUpBtn" type="button">SCREEN +</button>
+      </div>
+      <div class="gangHeader">
+        <div><div class="gangTitle" id="gangTitle">TEAM LEADER · 8 HYDRAULIC JACKS</div><div class="gangSub">Pressing either procedure button immediately restarts that complete procedure.</div></div>
+        <div class="gangPressure" id="gangPressure">0 bar</div>
+      </div>
+      <div class="leaderCommand" id="leaderCommand"><strong>COMMAND 1</strong>Place the hydraulic jack on the stud and screw it down until it bears on the cylinder cover.</div>
+      <div class="gangGrid" id="gangGrid"></div>
+      <div class="gangControls">
+        <button id="gangHydBtn" type="button">PLACE / REMOVE<br>HYDRAULIC JACK</button>
+        <button id="gangHoseBtn" type="button">PLACE / REMOVE<br>HYDRAULIC HOSE</button>
+        <button id="gangNutBtn" type="button">PLACE / REMOVE<br>NUT</button>
+        <button id="gangConfirmBtn" type="button" class="confirmBtn">CONFIRM — HAND UP</button>
+      </div>
+      <div class="safetyControls" aria-label="Safety controls">
+        <button id="gangReportProblemBtn" type="button" class="reportProblemBtn">REPORT PROBLEM<br>/ LEAK</button>
+        <button id="gangEmergencyStopBtn" type="button" class="emergencyStopBtn">EMERGENCY<br>STOP</button>
+      </div>
+      <div class="gangMessage" id="gangMessage">Waiting for the operator at Hydraulic Jack No. 1.</div>
+    </div>
+    <div class="note" id="trainingNote">Team operation mode: follow only the Team Leader command. The common pressure and the other seven hydraulic-jack operators are synchronized. Confirm each completed action with the hand-up button. Report any leak or abnormal condition immediately; use EMERGENCY STOP for an immediate halt.</div>
+  </div>
+  <aside class="side">
+    <div class="card">
+      <div class="title">Hydraulic_Jack_127_Training</div>
+      <div class="sub">V92 English · MAN B&amp;W manual terminology. A Restart control reloads the simulator from its initial condition, and the digital pressure readout is positioned 100 px lower than its original position. Step 7 uses press-and-hold pressure reduction. When Step 7 is completed at 0 bar, the nut remains FREE unless a mechanical contact or jam condition exists. With HELP OFF, completion of sequence targets is not highlighted. During automatic hydraulic-jack removal, the nut remains fixed in its existing axial and angular position. In Team Leader mode, the eight nuts do not release at exactly the same pressure. Each jack has a small hidden deviation around the nominal working pressure. During pressure increase, every operator repeatedly tests the nut with the tommy bar and confirms only after free movement is physically detected. The Team Leader continues increasing the common pressure until all eight operators have confirmed; only then is the pressure rise stopped and the next command issued. During pressure reduction, the trainee can continuously test the nut and signal immediately if it tightens.</div>
+    </div>
+
+    <div class="card">
+      <div class="title">1. Pressure / release</div>
+      <label>Hydraulic jack pressure</label>
+      <input type="range" id="pressure" min="0" max="2500" step="10" value="0">
+      <button id="reset">Reset</button><div class="small">The on-screen controls are arranged in two left columns. Hydraulic-jack removal must precede nut removal, and each part disappears only after its threaded lower end passes beyond the end of the stud.</div>
+      <div class="row"><span>Pressure</span><strong id="pressureOut">0 bar</strong></div>
+      <div class="row"><span>Hydraulic lift</span><strong id="liftOut">0.00 mm</strong></div>
+      <div class="row"><span>Stud load carried by nut</span><strong id="nutTensionOut">100%</strong></div>
+      <div class="row"><span>Stud load carried by hydraulic jack</span><strong id="hydTensionOut">0%</strong></div>
+      <div class="row"><span>Actual Stud Tension</span><strong id="studTensionOut">594 tf</strong></div>
+      <div id="releaseStatus" class="status locked">LOCKED: rotation is not permitted.</div>
+    </div>
+
+    <div class="card">
+      <div class="title">2. Tommy bar / 100° slot</div>
+      <div style="display:none"><button id="unscrew" class="ok">Mode: Loosening</button><button id="screw">Mode: Tightening</button></div>
+      <div class="status pressure">Manual nut operation: select a visible tommy-bar hole and drag along the slot. Only the active hole is shown; no tommy-bar extension is drawn.</div>
+      <div style="display:none"><button id="strokeUp">Loosen 100°</button><button id="strokeDown">Tighten 100°</button><button id="reindex">Reposition tommy bar</button><label><input type="checkbox" id="autoReindex"></label></div>
+      <div class="row"><span>Direction</span><strong id="modeOut">Loosening</strong></div>
+      <div class="row"><span>Tommy-bar stroke</span><strong id="strokeOut">0° / 100°</strong></div>
+      <div class="row"><span>Active hole</span><strong id="holeOut">#1 / 8</strong></div>
+      <div class="row"><span>Travel per 100°</span><strong id="strokeTravelOut">2.00 mm</strong></div>
+      <div class="status pressure">Initial condition: 0 bar. The nut alone bears against the cylinder-cover contact face and the hydraulic jack is not fitted. Pressure may be applied only after the jack is screwed fully onto the stud, the high-pressure hoses are connected, the system is bled / piston zero is established, and the jack is unscrewed 3/4 turn to create clearance.</div>
+    </div>
+
+    <div class="card">
+      <div class="title">3. Clearances</div>
+      <div class="row"><span>Thread travel T</span><strong id="threadOut">0.00 mm</strong></div>
+      <div class="row"><span>Clearance under pressure</span><strong id="pressureGapOut">0.00 mm</strong></div>
+      <div class="row"><span>Free clearance at 0 bar</span><strong id="freeGapOut">0.00 mm</strong></div>
+      <div class="row"><span>Current visual clearance</span><strong id="visualGapOut">0.00 mm</strong></div>
+      <div class="row"><span>Gap nut–cover</span><strong id="bottomGapOut">0.00 mm</strong></div>
+      <div class="row"><span>Gap nut–support-ring top</span><strong id="topGapOut">20.00 mm</strong></div>
+      <div class="row"><span>Permitted movement</span><strong id="motionOut">—</strong></div>
+      <label>Nut position within free clearance</label>
+      <input type="range" id="play" min="0" max="0" step="0.01" value="0">
+      <button id="play0">Lower position</button><button id="playMax">Upper position</button>
+      <div class="row"><span>Nut axial play</span><strong id="playOut">0.00 mm</strong></div>
+      <div id="playStatus" class="status locked">No free clearance is available.</div>
+    </div>
+
+
+    <div class="card">
+      <div class="title">4. H/J assembly on stud</div>
+      <div id="cylStatus" class="status pressure">Select one of the visible J-Cylinder holes and drag horizontally. The H/J assembly can be screwed or unscrewed on the stud only at 0 bar.</div>
+      <div class="row"><span>H/J mode</span><strong id="cylModeOut">Loosening</strong></div>
+      <div class="row"><span>Cylinder stroke</span><strong id="cylStrokeOut">0° / 100°</strong></div>
+      <div class="row"><span>Active cylinder hole</span><strong id="cylHoleOut">#1 / 8</strong></div>
+      <div class="row"><span>H/J axial travel</span><strong id="cylThreadOut">0.00 mm</strong></div>
+      <div class="row"><span>Support-ring follow</span><strong id="cylSpacerOut">0.00 mm</strong></div>
+      <div class="row"><span>Piston rise in cylinder</span><strong id="pistonRiseOut">0.00 mm</strong></div>
+    </div>
+
+
+    <div class="card">
+      <div class="title">5. Complete dismantling sequence</div>
+      <div id="scenarioStatus" class="status locked">Initial condition: only the nut is visible, bearing against the cylinder-cover contact face and carrying the stud load. The hydraulic jack is not fitted.</div>
+      <div class="small">Manual hole-count operations and pressure changes are controlled from the main on-screen panel. Full removals are automatic only after separate commands.</div>
+      <div class="row"><span>High-pressure hoses</span><strong id="hosesOut">Disconnected</strong></div>
+      <div class="row"><span>Piston zero</span><strong id="pistonZeroOut">No</strong></div>
+      <div class="row"><span>Back-off hydraulic</span><strong id="backoffOut">0.00 / 4.50 mm</strong></div>
+      <div class="row"><span>Ready for pressure</span><strong id="readyPressureOut">No</strong></div>
+      <div class="row"><span>Nut loosen target</span><strong id="nut5Out">0.00 / 3.75 mm</strong></div>
+      <div class="row"><span>Hydraulic-jack removal</span><strong id="hydRemoveOut">Not ready</strong></div>
+      <div class="row"><span>Nut removal</span><strong id="nutRemoveOut">Not ready</strong></div>
+      <p class="small">Dismantling / mounting model: for mounting after removal, fit the nut to 6 mm above the cylinder-cover contact face → manually tighten the nut → fit the hydraulic jack to 5 mm → manually seat the H/J assembly and K-Support ring → connect high-pressure hoses → bleed/reset → increase oil pressure → tighten the nut with the tommy bar → relieve pressure → remove the hydraulic jack.</p>
+    </div>
+
+    <div class="card">
+      <div class="title">6. Parameters</div>
+      <label>M130×P thread pitch</label>
+      <input type="range" id="pitch" min="4" max="8" step="0.5" value="6">
+      <div class="row"><span>Pitch</span><strong id="pitchOut">6 mm</strong></div>
+      <div><span class="pill">Nut Ø225×130</span><span class="pill">Stud Ø130</span><span class="pill">H-Piston ID M130×6 H=130</span><span class="pill">J-Cylinder OD=K-Support ring</span><span class="pill">Slot 100°</span><span class="pill">Lift 1.5 mm</span><span class="pill">V83 fixed nut during hydraulic removal</span></div>
+      <p class="small">Calculation: 6 holes × 45° = 270° = 3/4 turn, corresponding to 4.50 mm on the M130×6 thread. For the nut, 5 holes × 45° = 225° = 5/8 turn, corresponding to 3.75 mm. After the system pressure is relieved and the stud elastically contracts, the nut remains loose and does not bear against the cylinder-cover contact face. Pressure profile: pump delivery progressively decreases as back pressure rises. The rise curve is calibrated so 0 → 2200 bar takes 60 s; the theoretical 0 → 2500 bar time is approximately 71.7 s. Pressure reduction is linear from 2500 → 0 bar in 10 s, only while the relevant button is held.</p>
+    </div>
+  </aside>
+</div>
+<script>
+(() => {
+'use strict';
+const canvas=document.getElementById('c'), ctx=canvas.getContext('2d');
+const magnifierBuffer=document.createElement('canvas'), magnifierBufferCtx=magnifierBuffer.getContext('2d');
+const $=id=>document.getElementById(id);
+const e={topRead:$('topRead'),pressure:$('pressure'),pressureOut:$('pressureOut'),liftOut:$('liftOut'),releaseStatus:$('releaseStatus'),nutTensionOut:$('nutTensionOut'),hydTensionOut:$('hydTensionOut'),studTensionOut:$('studTensionOut'),b2000:$('b2000'),b2200:$('b2200'),b0:$('b0'),reset:$('reset'),unscrew:$('unscrew'),screw:$('screw'),strokeUp:$('strokeUp'),strokeDown:$('strokeDown'),reindex:$('reindex'),autoReindex:$('autoReindex'),modeOut:$('modeOut'),strokeOut:$('strokeOut'),holeOut:$('holeOut'),strokeTravelOut:$('strokeTravelOut'),threadOut:$('threadOut'),pressureGapOut:$('pressureGapOut'),freeGapOut:$('freeGapOut'),visualGapOut:$('visualGapOut'),bottomGapOut:$('bottomGapOut'),topGapOut:$('topGapOut'),motionOut:$('motionOut'),play:$('play'),play0:$('play0'),playMax:$('playMax'),playOut:$('playOut'),playStatus:$('playStatus'),cylStatus:$('cylStatus'),cylModeOut:$('cylModeOut'),cylStrokeOut:$('cylStrokeOut'),cylHoleOut:$('cylHoleOut'),cylThreadOut:$('cylThreadOut'),cylSpacerOut:$('cylSpacerOut'),pistonRiseOut:$('pistonRiseOut'),scenarioStatus:$('scenarioStatus'),connectHoses:$('connectHoses'),bleedZero:$('bleedZero'),disconnectHoses:$('disconnectHoses'),scPlaceNut:$('scPlaceNut'),scPlaceHyd:$('scPlaceHyd'),scConnect:$('scConnect'),scBleed:$('scBleed'),scBackoffHyd:$('scBackoffHyd'),scPumpStart:$('scPumpStart'),scLoosenNut5:$('scLoosenNut5'),sequenceProgress:$('sequenceProgress'),scSetNut:$('scSetNut'),scPumpStop:$('scPumpStop'),scDisconnect:$('scDisconnect'),scUnscrewHyd:$('scUnscrewHyd'),scUnscrewNut:$('scUnscrewNut'),helpBtn:$('helpBtn'),magnifierToggleBtn:$('magnifierToggleBtn'),modeLoosenBtn:$('modeLoosenBtn'),modeTightenBtn:$('modeTightenBtn'),screenPanel:$('screenPanel'),sequenceNo:$('sequenceNo'),sequenceTitle:$('sequenceTitle'),sequenceRef:$('sequenceRef'),sequenceLabel:$('sequenceLabel'),trainingNote:$('trainingNote'),operatorNote:$('operatorNote'),hosesOut:$('hosesOut'),pistonZeroOut:$('pistonZeroOut'),backoffOut:$('backoffOut'),readyPressureOut:$('readyPressureOut'),nut5Out:$('nut5Out'),hydRemoveOut:$('hydRemoveOut'),nutRemoveOut:$('nutRemoveOut'),pitch:$('pitch'),pitchOut:$('pitchOut')};
+const DEG=Math.PI/180, TAU=Math.PI*2;
+const s={pressure:0,pitch:6,liftStart:2000,releasePressure:2200,nutUnlockPressure:2250,pumpMaxPressure:2500,workingPressure:2250,pressureRiseSlowdown:0.50,pressureRiseToReleaseTime:60,pressureFallTime:10,pressureFallRate:2500/10,releaseLift:1.5,nutOD:225,nutH:130,studDia:130,studLen:300,spacerOD:285,spacerID:238,spacerH:150,jCylinderOD:285,jCylinderID:238,jCylinderH:130,hPistonOD:225,hPistonID:130,hPistonH:130,slotBottomFromBase:55,slotTopFromBase:80,holeCount:8,holeDepth:35,holeDia:13,holeCenter:65,slotStart:-140*DEG,slotSpan:100*DEG,baseHole0:-90*DEG,nutRotation:-60*DEG,activeHole:0,strokeProgress:0,operation:1,threadTravel:0,maxThreadTravel:40,nutPlay:0,cylBaseHole0:-90*DEG,cylRotation:-60*DEG,cylActiveHole:0,cylStrokeProgress:0,cylOperation:1,cylThreadTravel:40,cylMaxThreadTravel:40,hosesConnected:false,pistonZero:false,pressureBlocked:false,draggingHandle:false,draggingNut:false,draggingCylinder:false,grabOffset:0,dragStartX:0,dragStartTravel:0,dragStartProgress:0,dragStartRotation:-60*DEG,anim:null,freeLatch:false,tightenCompleted:false,help:false,pressureCycleStarted:false,pressureEverAboveUnlock:false,hydBackoffAtPressure:null,hydBackoffCorrectAtPressure:false,nutCoverLocked:false,internalJam:false,nutReleasedUnderPressure:false,step7Completed:false,studTensionHoldTf:594,workflowMode:'loosen',commandMode:true,magnifierEnabled:true,magnifierX:NaN,magnifierY:NaN,magnifierRadius:150,magnifierZoom:10,draggingMagnifier:false,magnifierGrabX:0,magnifierGrabY:0,displayScale:1};
+let W=900,H=650,DPR=1,front={cx:0,cy:0,r:0},side={x:0,y:0,w:0,h:0,coverY:0,scale:1,nutBox:null};
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+// Pressure-dependent hydraulic pump delivery. The available rise rate decreases
+// linearly with back pressure, reaching 50% of its zero-pressure value at 2500 bar.
+// The zero-pressure rate is calculated so that 0 -> 2200 bar takes exactly 60 s
+// in the continuous model.
+function pressureRiseRateAt(p){
+  const b=s.pressureRiseSlowdown;
+  const pMax=s.pumpMaxPressure;
+  const pTarget=s.releasePressure;
+  const tTarget=s.pressureRiseToReleaseTime;
+  const baseRate=(pMax/(b*tTarget))*Math.log(1/(1-b*pTarget/pMax));
+  return baseRate*(1-b*clamp(Number(p)||0,0,pMax)/pMax);
+}
+function mod(a,m){return ((a%m)+m)%m;}
+function holeStep(){return TAU/s.holeCount;}
+function holeAngle(i){return s.baseHole0+s.nutRotation+i*holeStep();}
+function cylHoleAngle(i){return s.cylBaseHole0+s.cylRotation+i*holeStep();}
+function cylActiveAngle(){return s.slotStart+s.cylStrokeProgress*s.slotSpan;}
+function activeAngle(){return s.slotStart+s.strokeProgress*s.slotSpan;}
+function displayAngle(a){return -a;} // reverse only the visual motion in the left/front view; mechanical nut rotation remains unchanged
+function slotEnd(){return s.slotStart+s.slotSpan;}
+function slotRel(a){return mod(a-s.slotStart,TAU);}
+function cylCanRotate(){
+  if(s.pressure!==0 || s.internalJam) return false;
+  if(s.commandMode && typeof gangAllowsCylinderMotion==='function' && !gangAllowsCylinderMotion()) return false;
+  return true;
+}
+function requiredBackoffTravel(){return s.pitch*0.75;}
+function holeTravel(){return s.pitch/s.holeCount;}
+function nutFiveHoleTravel(){return s.pitch*(5*45/360);}
+function nutSevenHoleTravel(){return s.pitch*(7*45/360);}
+function hydraulicBackoffDisplayTravel(){return hydraulicsVisible()?Math.max(0,s.cylThreadTravel):0;}
+function hydraulicBackoffHoleCount(){return Math.max(0,hydraulicBackoffDisplayTravel()/holeTravel());}
+function nutLoosenHoleCount(){return Math.max(0,s.threadTravel/holeTravel());}
+function nutInCorrectRange(){const n=nutLoosenHoleCount();return n>=5-0.08 && n<=7+0.08;}
+function hydBackoffWasCorrect(){return s.pressureCycleStarted && s.hydBackoffCorrectAtPressure;}
+function sequenceFailure(){
+  if(isTightenWorkflow()) return '';
+  if(s.internalJam) return 'JAM: the nut was unscrewed more than 7 holes and, after pressure reached 0 bar, it made internal contact with the hydraulic jack.';
+  if(s.nutCoverLocked) return 'JAM: the nut was unscrewed fewer than 5 holes and, during stud contraction, it contacted the cylinder-cover contact face at approximately 1000 bar.';
+  if(s.pressureCycleStarted && s.pressure===0 && !hydBackoffWasCorrect()) return 'ERROR: before pressurising, the hydraulic jack was not unscrewed exactly 3/4 turn to create the required clearance.';
+  return '';
+}
+function stepAllowed(n){
+  if(!s.help) return true;
+  if(isTightenWorkflow()){
+    if(n===6 && hydraulicsVisible() && nutVisible() && tighteningPressureCorrect() && pressureGap()>0.05 && (!s.tightenCompleted || s.draggingHandle)) return true;
+    if(n===7 && s.pressure>0) return true;
+    if(n===8 && !hydraulicsRemoved() && hydraulicsReadyToRemove()) return true;
+    return currentSequenceStep()===n;
+  }
+  if(n===7 && s.pressure>0) return true;
+  if(n===8 && s.pressure===0 && s.hosesConnected) return true;
+  if(n===9 && !hydraulicsRemoved() && hydraulicsReadyToRemove()) return true;
+  if(n===10 && !nutRemoved() && nutReadyToRemove()) return true;
+  return !sequenceFailure() && currentSequenceStep()===n;
+}
+function assemblySeated(){return s.cylThreadTravel<=0.05;}
+function backoffReady(){return hydraulicsVisible() && Math.abs(s.cylThreadTravel-requiredBackoffTravel())<=0.08;}
+function canBuildPressure(){return s.hosesConnected && s.pistonZero && hydraulicsVisible();}
+function pressureMissingItems(){
+  const missing=[];
+  if(!s.hosesConnected) missing.push('high-pressure hoses');
+  if(!s.pistonZero) missing.push('piston zero');
+  return missing;
+}
+function hydraulicsReadyToRemove(){if(isTightenWorkflow()) return s.pressure===0 && !s.hosesConnected && s.step7Completed; return s.pressure===0 && !s.hosesConnected && s.step7Completed && hydBackoffWasCorrect() && !s.nutCoverLocked && !s.internalJam;}
+function spacerFollowDisplay(){return s.pressure>0 ? 0 : s.cylThreadTravel;}
+// The hydraulic pair is considered removed only when the lower threaded end of the H/J pair
+// has passed beyond the end of the stud. In this working model that corresponds to full H/J thread travel.
+function hydraulicsRemoved(){return s.cylThreadTravel>=s.cylMaxThreadTravel-0.05;}
+function hydraulicsVisible(){return !hydraulicsRemoved();}
+function hydraulicsPlacementReady(){if(isTightenWorkflow()) return s.pressure===0 && hydraulicsRemoved() && nutVisible(); return s.pressure===0 && hydraulicsRemoved() && s.threadTravel<=0.05;}
+function hydraulicsPlacementTarget(){return 0;}
+function nutPlacementTarget(){
+  // In tightening mode the nut is run fully down to the cylinder-cover contact face
+  // without applying preload. The 1.50 mm tightening clearance is created later by
+  // hydraulic elongation of the stud at 2200 bar.
+  return isTightenWorkflow()?0:6;
+}
+function nutPlacementReady(){return hydraulicsRemoved() && s.pressure===0 && nutRemoved();}
+function nutSetdownReady(){return hydraulicsVisible() && nutVisible() && s.pressure>=s.releasePressure && pressureGap()>0.05;}
+function hydraulicsPlacementReached(){return hydraulicsVisible() && s.cylThreadTravel<=hydraulicsPlacementTarget()+0.05;}
+function nutReadyToRemove(){return hydraulicsRemoved() && s.pressure===0 && !s.nutCoverLocked && !s.internalJam && (s.freeLatch || nutInCorrectRange());}
+// The nut is considered removed only when the lower end of its threaded region has passed
+// beyond the end of the stud. In this working model that corresponds to full nut thread travel.
+function nutRemoved(){return s.threadTravel>=s.maxThreadTravel-0.05;}
+function nutVisible(){return !nutRemoved();}
+function assemblyLift(){
+  // At 0 bar the H/J pair stays where it was screwed on the stud.
+  // As soon as pressure is applied, the J-Cylinder / K-Support ring system seats on the cover.
+  return s.pressure>0 ? 0 : s.cylThreadTravel;
+}
+function visualPistonRise(){
+  // Visual piston rise starts immediately with pressure and grows proportionally
+  // until the nut loosens at the release pressure.
+  if(s.pressure<=0) return 0;
+  if(s.pressure>=s.releasePressure) return s.releaseLift;
+  return (s.pressure/s.releasePressure)*s.releaseLift;
+}
+function currentLift(){
+  // Stud elongation follows the applied hydraulic pressure continuously.
+  // 0 bar = 0.00 mm, 2200 bar = 1.50 mm; above 2200 bar the visual/mechanical
+  // elongation remains limited to the specified 1.50 mm working lift.
+  if(s.pressure<=0) return 0;
+  if(s.pressure>=s.releasePressure) return s.releaseLift;
+  return (s.pressure/s.releasePressure)*s.releaseLift;
+}
+function hydraulicReleased(){return s.pressure>=s.releasePressure;}
+function nutReleaseReached(){
+  // Team Leader mode: each jack has its own hidden release pressure.
+  // The trainee learns the release point only by testing the nut with the tommy bar.
+  // Legacy individual mode retains the earlier >2250 bar training rule.
+  return s.commandMode ? s.pressure>=gang.releasePressures[0] : s.pressure>s.nutUnlockPressure;
+}
+function availableFreeGap(){
+  if(s.pressure!==0 || s.nutCoverLocked || s.internalJam) return 0;
+  // During initial mounting the nut has been run down to the contact face by hand
+  // but no preload has yet been applied. It is therefore rotationally free, and any
+  // loosening travel produces the same visible nut-to-cover clearance.
+  if(isTightenWorkflow() && !s.tightenCompleted) return Math.max(0,s.threadTravel);
+  return Math.max(0, s.threadTravel - s.releaseLift);
+}
+function freeGap(){return availableFreeGap();}
+function zeroPressureGapFree(){
+  return s.pressure===0 && freeGap()>1e-6;
+}
+function latchedFreeAtZeroPressure(){
+  return s.pressure===0 && s.freeLatch;
+}
+function zeroTensionState(){
+  return zeroPressureGapFree() || latchedFreeAtZeroPressure();
+}
+function hydraulicTransferPercent(){
+  if(zeroTensionState()) return 0;
+  if(s.pressure<=s.liftStart) return 0;
+  if(s.pressure>=s.releasePressure) return 100;
+  return (s.pressure-s.liftStart)/(s.releasePressure-s.liftStart)*100;
+}
+function hydraulicTensionPercent(){
+  if(zeroTensionState()) return 0;
+  if(hydraulicReleased()) return 100;
+  return hydraulicTransferPercent();
+}
+function nutTensionPercent(){
+  if(zeroTensionState()) return 0;
+  if(hydraulicReleased()) return 0;
+  return 100-hydraulicTransferPercent();
+}
+function tensionCarrier(){
+  if(hydraulicReleased()) return 'hydraulic';
+  if(zeroTensionState()) return 'free';
+  return 'nut';
+}
+function canRotate(){
+  if(s.internalJam) return false;
+  if(s.nutCoverLocked && !(s.commandMode && nutReleaseReached())) return false;
+  if(isTightenWorkflow()){
+    // Before pressurising, the newly fitted nut is free to rotate within its
+    // mechanical limits even though it is resting on the contact face without preload.
+    if(s.pressure===0 && nutVisible() && !s.tightenCompleted) return true;
+    // At the correct tightening pressure the stud has elongated by 1.50 mm,
+    // creating the clearance required for manual tightening in Step 6.
+    if(tighteningPressureCorrect() && nutVisible()) return true;
+  }
+  return (nutReleaseReached() || s.nutReleasedUnderPressure || zeroTensionState());
+}
+function pressureGap(){
+  // Hydraulic clearance under the nut: proportional to the applied pressure via stud elongation.
+  // At 2200 bar the working clearance is 1.50 mm when the nut is still at the set-down position.
+  // Any manual tightening travel under pressure reduces this clearance accordingly.
+  return Math.max(0,currentLift()+s.threadTravel);
+}
+function visualGap(){
+  const fg=freeGap();
+  // During and after hydraulic removal, the nut retains its own independent visible
+  // axial position. It must not be carried upward by the H/J/K assembly.
+  if(!hydraulicsVisible()) return clamp(s.nutPlay,0,s.maxThreadTravel);
+  if(s.pressure===0 && zeroTensionState()) return clamp(s.nutPlay,0,fg);
+  // While pressure is applied, show the actual pressure-created clearance under the nut.
+  return pressureGap();
+}
+function bottomClearance(){
+  // Clearance between nut bottom face and cylinder cover.
+  return Math.max(0, visualGap());
+}
+function topClearance(){
+  // When hydraulics are still present, the upper motion is limited by the spacer internal top.
+  // After the hydraulics are fully unscrewed and removed, the exposed nut may continue to
+  // loosen until its own thread travel reaches the full removal travel.
+  if(!hydraulicsVisible()) return Math.max(0, s.maxThreadTravel - s.threadTravel);
+  return Math.max(0, s.spacerH - s.nutH - visualGap());
+}
+function canTighten(){return canRotate() && bottomClearance()>1e-6;}
+function canLoosen(){return canRotate() && topClearance()>1e-6;}
+function canRotateDirection(op){return op>0 ? canLoosen() : canTighten();}
+function nutManualOperationAllowed(){
+  if(s.commandMode && typeof gangAllowsNutMotion==='function') return gangAllowsNutMotion();
+  if(!canRotate()) return false;
+  if(isTightenWorkflow()){
+    // Immediately after Step 1 the hand-fitted nut is free before the hydraulic jack is fitted.
+    if(s.pressure===0 && hydraulicsRemoved() && nutVisible() && !s.tightenCompleted) return true;
+    // In HELP ON as well as HELP OFF, once hydraulic elongation has created real clearance
+    // under the nut, the nut must be free to cover that clearance by manual tightening.
+    // Keep the movement enabled for the whole pointer drag; final completion is checked only
+    // on pointer release.
+    if(hydraulicsVisible() && nutVisible() && tighteningPressureCorrect() && pressureGap()>0.05 && (!s.tightenCompleted || s.draggingHandle)) return true;
+  }
+  return stepAllowed(6);
+}
+function strokeTravel(){return s.pitch*s.slotSpan/TAU;}
+function angleToTravel(da){return da/TAU*s.pitch;}
+function travelToAngle(mm){return mm/s.pitch*TAU;}
+function setPressure(v){
+  let requested=clamp(Number(v)||0,0,s.pumpMaxPressure);
+  const previousPressure=s.pressure;
+  const prevFree=freeGap();
+
+  if(requested>0 && !canBuildPressure()){
+    s.pressureBlocked=true;
+    s.pressure=0;
+    s.nutPlay=0;
+    update();draw();
+    return;
+  }
+
+  if(previousPressure<=0 && requested>0){
+    // Every new pressure application starts a new cycle. Re-evaluate the actual
+    // hydraulic-jack back-off each time, so a corrected repeat cycle can proceed
+    // to Step 9 even if an earlier pressure attempt was made at the wrong position.
+    s.step7Completed=false;
+    s.pressureCycleStarted=true;
+    s.hydBackoffAtPressure=s.cylThreadTravel;
+    s.hydBackoffCorrectAtPressure=isTightenWorkflow() ? true : Math.abs(s.cylThreadTravel-requiredBackoffTravel())<=0.08;
+  }
+  if((s.commandMode && requested>=gang.releasePressures[0]) || (!s.commandMode && requested>s.nutUnlockPressure)) s.pressureEverAboveUnlock=true;
+
+  // At the correct tightening pressure, prepare the tommy-bar hole at the
+  // tightening end of the slot so the operator can immediately drag left/down.
+  if(isTightenWorkflow() && Math.abs(requested-s.releasePressure)<=1 && !s.tightenCompleted){
+    s.operation=-1;
+    reindexHandle(-1,false);
+  }
+
+  const decreasing=requested<previousPressure-1e-6;
+  if(decreasing && previousPressure>1000 && requested<=1000 && nutLoosenHoleCount()<5-0.08){
+    s.nutCoverLocked=true;
+    s.freeLatch=false;
+    s.nutPlay=0;
+  }
+
+  s.pressureBlocked=false;
+  s.pressure=requested;
+
+  // Step 7 is completed only when pressure has actually been lowered from a
+  // positive value to 0 bar. Releasing the hold button above 0 bar pauses the
+  // operation and does not complete the step.
+  if(decreasing && previousPressure>0 && s.pressure===0 && s.pressureCycleStarted){
+    s.step7Completed=true;
+  }
+
+  if(s.pressure===0 && s.pressureCycleStarted && nutLoosenHoleCount()>7+0.08){
+    s.internalJam=true;
+    s.freeLatch=false;
+    s.nutPlay=0;
+  }
+
+  const fg=freeGap();
+  // On correct completion of Step 7, keep the nut mechanically FREE at 0 bar.
+  // A real contact with the cylinder-cover face or an internal jam takes precedence.
+  if(s.pressure===0 && s.step7Completed && s.nutReleasedUnderPressure && !s.nutCoverLocked && !s.internalJam){
+    s.freeLatch=true;
+  }else if(s.pressure===0 && !s.nutCoverLocked && !s.internalJam && nutInCorrectRange() && fg>1e-6){
+    s.freeLatch=true;
+  }
+  if(s.pressure===0 && zeroTensionState()){
+    if(fg>0 && (prevFree<=1e-6 || s.nutPlay<=1e-6)) s.nutPlay=fg;
+    s.nutPlay=clamp(s.nutPlay,0,fg);
+  }else{
+    s.nutPlay=0;
+  }
+  update();draw();
+}
+function setMode(op){s.operation=op;update();draw();}
+function applyWorkflowReset(mode){
+  cancelAnim();
+  const keepHelp=!!s.help;
+  const keepPitch=Number(e.pitch.value)||s.pitch||6;
+  Object.assign(s,{pressure:0,pitch:keepPitch,nutRotation:-60*DEG,activeHole:0,strokeProgress:0,operation:mode==='tighten'?-1:1,threadTravel:mode==='tighten'?s.maxThreadTravel:0,nutPlay:0,cylRotation:-60*DEG,cylActiveHole:0,cylStrokeProgress:0,cylOperation:1,cylThreadTravel:s.cylMaxThreadTravel,hosesConnected:false,pistonZero:false,pressureBlocked:false,draggingHandle:false,draggingNut:false,draggingCylinder:false,dragStartX:0,dragStartTravel:0,dragStartProgress:0,freeLatch:false,tightenCompleted:false,help:keepHelp,pressureCycleStarted:false,pressureEverAboveUnlock:false,hydBackoffAtPressure:null,hydBackoffCorrectAtPressure:mode==='tighten',nutCoverLocked:false,internalJam:false,nutReleasedUnderPressure:false,step7Completed:false,studTensionHoldTf:mode==='tighten'?0:594,workflowMode:mode});
+  setActiveHoleToSlotProgress();setActiveCylHoleToProgress();update();draw();
+}
+function reset(){applyWorkflowReset(s.workflowMode||'loosen');}
+function activateWorkflow(mode){applyWorkflowReset(mode);}
+function setActiveHoleToSlotProgress(){s.nutRotation=activeAngle()-s.baseHole0-s.activeHole*holeStep();}
+function setActiveCylHoleToProgress(){s.cylRotation=cylActiveAngle()-s.cylBaseHole0-s.cylActiveHole*holeStep();}
+function advanceRotation(deltaAngle, op){
+  if(!canRotate())return false;
+  const dir = op>=0 ? 1 : -1; // +1 loosening, -1 tightening
+  const available = dir>0 ? topClearance() : bottomClearance();
+
+  // Directional mechanical limits:
+  // - tightening requires visible gap between nut and cover
+  // - loosening requires gap between nut top and internal spacer top
+  if(available<=1e-6)return false;
+
+  const requestedAbsTravel=angleToTravel(Math.abs(deltaAngle));
+  const allowedAbsTravel=Math.min(requestedAbsTravel, available);
+  if(allowedAbsTravel<=1e-9)return false;
+
+  const requestedTravel=dir*allowedAbsTravel;
+  let upperLimit=s.maxThreadTravel-holeTravel(); // full disengagement remains an automatic command
+  if(hydraulicsVisible()) upperLimit=Math.min(upperLimit, s.spacerH-s.nutH);
+  let lowerLimit=(s.pressure>0 ? -currentLift() : 0);
+  let newT=clamp(s.threadTravel+requestedTravel,lowerLimit,upperLimit);
+  let actualTravel=newT-s.threadTravel;
+  if(Math.abs(actualTravel)<1e-9)return false;
+
+  let actualAngle=travelToAngle(actualTravel);
+  s.threadTravel=newT;
+  s.nutRotation+=actualAngle;
+
+  // Once the nut has actually been loosened while pressure is above the unlocking threshold,
+  // it remains mechanically free during the subsequent pressure reduction, unless another
+  // physical interlock occurs (cover contact or internal nut/hydraulic jam).
+  if(actualTravel>1e-9 && nutReleaseReached()){
+    s.nutReleasedUnderPressure=true;
+  }
+
+  if(s.pressure===0 && !hydraulicsVisible() && isTightenWorkflow() && !s.tightenCompleted){
+    // The exposed, hand-fitted nut follows its thread travel directly.
+    s.nutPlay=clamp(s.threadTravel,0,s.maxThreadTravel);
+    s.freeLatch=true;
+  }else if(s.pressure===0 && zeroTensionState()){
+    s.nutPlay=clamp(s.nutPlay+actualTravel,0,freeGap());
+    if(freeGap()>1e-6) s.freeLatch=true;
+  }else if(s.pressure===0 && Math.max(0,s.threadTravel-s.releaseLift)>1e-6){
+    s.freeLatch=true;
+  }
+  // In tightening mode, final completion is checked on pointer release after snapping.
+  return true;
+}
+function applyStrokeProgress(newProgress){newProgress=clamp(newProgress,0,1);let dp=newProgress-s.strokeProgress;if(Math.abs(dp)<1e-6)return;let delta=Math.abs(dp)*s.slotSpan;let op = dp>=0 ? 1 : -1;let ok=advanceRotation(delta,op);if(ok){s.strokeProgress=newProgress;s.operation=op;}}
+function advanceCylRotation(deltaAngle, op){
+  if(!cylCanRotate())return false;
+  const dir = op>=0 ? 1 : -1; // +1 loosening/up, -1 tightening/down
+  const requestedAbsTravel=angleToTravel(Math.abs(deltaAngle));
+  const allowedAbsTravel=Math.min(requestedAbsTravel, s.cylMaxThreadTravel);
+  if(allowedAbsTravel<=1e-9)return false;
+  let upperLimit=s.cylMaxThreadTravel-holeTravel(); // full disengagement remains an automatic command
+  let newT=clamp(s.cylThreadTravel + dir*allowedAbsTravel, 0, upperLimit);
+  let actualTravel=newT-s.cylThreadTravel;
+  if(Math.abs(actualTravel)<1e-9)return false;
+  s.cylThreadTravel=newT;
+  s.cylRotation += travelToAngle(actualTravel);
+
+  // If hoses are connected and the H/J pair is tightened down to the seated/zero position,
+  // treat this as the mechanical bleed/zero-piston action.
+  if(s.hosesConnected && s.cylThreadTravel<=0.05 && dir<0){
+    s.pistonZero=true;
+  }
+  if(canBuildPressure()) s.pressureBlocked=false;
+  return true;
+}
+function applyCylStrokeProgress(newProgress){newProgress=clamp(newProgress,0,1);let dp=newProgress-s.cylStrokeProgress;if(Math.abs(dp)<1e-6)return;let delta=Math.abs(dp)*s.slotSpan;let op = dp>=0 ? 1 : -1;let ok=advanceCylRotation(delta,op);if(ok){s.cylStrokeProgress=newProgress;s.cylOperation=op;}}
+function visibleHoleCandidates(){let arr=[];for(let i=0;i<s.holeCount;i++){let rel=slotRel(holeAngle(i));if(rel<=s.slotSpan+1e-6)arr.push({i,rel});}return arr.sort((a,b)=>a.rel-b.rel);}
+function reindexHandle(op=s.operation, redraw=true){let cand=visibleHoleCandidates();if(!cand.length)return;const targetRel = op===1 ? 0 : s.slotSpan;let best=cand[0];for(const c of cand){if(Math.abs(c.rel-targetRel)<Math.abs(best.rel-targetRel)) best=c;}s.activeHole=best.i;s.strokeProgress=clamp(best.rel/s.slotSpan,0,1);s.operation=op;if(redraw){update();draw();}}
+function completeStroke(op){if(!canRotate())return;cancelAnim();const start=s.strokeProgress;const target=op===1?1:0;if(Math.abs(target-start)<1e-6){update();draw();return;}const dur=650,t0=performance.now();s.anim={run:true};function step(t){if(!s.anim||!s.anim.run)return;let u=clamp((t-t0)/dur,0,1);let eased=1-Math.pow(1-u,3);let p=start+(target-start)*eased;applyStrokeProgress(p);update();draw();if(u<1){requestAnimationFrame(step);}else{s.operation=op;s.anim=null;update();draw();}}requestAnimationFrame(step);}
+function cancelAnim(){if(s.anim)s.anim.run=false;s.anim=null;}
+function startPressureHold(direction){
+  cancelAnim();
+  const requiredStep=direction>0 ? 5 : 7;
+  if(!stepAllowed(requiredStep)){update();draw();return;}
+  if(direction<0 && s.pressure<=0){update();draw();return;}
+  if(direction>0 && !canBuildPressure()){
+    s.pressureBlocked=true;
+    update();draw();
+    return;
+  }
+  const limit=direction>0 ? s.pumpMaxPressure : 0;
+  const anim={run:true,type:direction>0?'pressureUp':'pressureDown',last:performance.now()};
+  s.anim=anim;
+  function step(ts){
+    if(!anim.run || s.anim!==anim) return;
+    if(!stepAllowed(requiredStep)){cancelAnim();update();draw();return;}
+    const dt=Math.max(0,Math.min(250,ts-anim.last));
+    anim.last=ts;
+    const rate=direction>0 ? pressureRiseRateAt(s.pressure) : s.pressureFallRate;
+    const delta=direction*rate*dt/1000;
+    const next=direction>0 ? Math.min(limit,s.pressure+delta) : Math.max(limit,s.pressure+delta);
+    setPressure(next);
+    const reached=direction>0 ? s.pressure>=limit-0.01 : s.pressure<=limit+0.01;
+    if(reached){cancelAnim();update();draw();return;}
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+function bindHoldButton(btn,onPress){
+  if(!btn) return;
+  let activePointer=null;
+  const release=ev=>{
+    if(activePointer!==null && ev && typeof ev.pointerId==='number' && ev.pointerId!==activePointer) return;
+    activePointer=null;
+    cancelAnim();
+    update();draw();
+  };
+  btn.addEventListener('pointerdown',ev=>{
+    if(btn.disabled) return;
+    ev.preventDefault();
+    activePointer=ev.pointerId;
+    try{btn.setPointerCapture(ev.pointerId);}catch(_e){}
+    onPress();
+  });
+  btn.addEventListener('pointerup',release);
+  btn.addEventListener('pointercancel',release);
+  btn.addEventListener('lostpointercapture',release);
+  btn.addEventListener('keydown',ev=>{
+    if((ev.key===' ' || ev.key==='Enter') && !ev.repeat && !btn.disabled){ev.preventDefault();onPress();}
+  });
+  btn.addEventListener('keyup',ev=>{
+    if(ev.key===' ' || ev.key==='Enter'){ev.preventDefault();release();}
+  });
+  btn.addEventListener('blur',()=>release());
+}
+function startNutPlacement(){
+  cancelAnim();
+  if(!nutPlacementReady()){
+    update();draw();
+    return;
+  }
+  const target=nutPlacementTarget();
+  const startT=s.threadTravel;
+  const anim={run:true,type:'nutPlace',last:performance.now(),rate:Math.max(0.004,(startT-target)/3000)};
+  s.anim=anim;
+  s.tightenCompleted=false;
+  function step(ts){
+    if(!anim.run) return;
+    const dt=Math.max(0,ts-anim.last); anim.last=ts;
+    const delta=anim.rate*dt;
+    const next=Math.max(target, s.threadTravel-delta);
+    const actual=next-s.threadTravel;
+    s.threadTravel=next;
+    s.nutRotation += travelToAngle(actual);
+    s.nutPlay=s.threadTravel;
+    update();draw();
+    if(anim.run && s.threadTravel>target+1e-6){
+      requestAnimationFrame(step);
+    }else if(anim.run){
+      if(isTightenWorkflow()){
+        s.threadTravel=target;
+        s.nutPlay=target;
+        s.freeLatch=true; // hand fitted at contact face, no preload yet
+        s.operation=1;    // initially allow loosening away from the contact face
+        reindexHandle(1,false);
+      }
+      cancelAnim(); update(); draw();
+    }
+  }
+  requestAnimationFrame(step);
+}
+
+function startNutSetdown(){
+  cancelAnim();
+  if(!nutSetdownReady()){
+    update();draw();
+    return;
+  }
+  const target=-currentLift();
+  const startT=s.threadTravel;
+  const anim={run:true,type:'nutSet',last:performance.now(),rate:Math.max(0.003,Math.abs(startT-target)/2500)};
+  s.anim=anim;
+  function step(ts){
+    if(!anim.run) return;
+    const dt=Math.max(0,ts-anim.last); anim.last=ts;
+    const delta=anim.rate*dt;
+    let next=startT>target ? Math.max(target, s.threadTravel-delta) : Math.min(target, s.threadTravel+delta);
+    const actual=next-s.threadTravel;
+    s.threadTravel=next;
+    s.nutRotation += travelToAngle(actual);
+    s.nutPlay=0;
+    if(Math.abs(s.threadTravel-target)<=0.02) s.tightenCompleted=true;
+    update();draw();
+    if(anim.run && Math.abs(s.threadTravel-target)>0.02){
+      requestAnimationFrame(step);
+    }else if(anim.run){
+      s.threadTravel=target;
+      s.tightenCompleted=true;
+      cancelAnim(); update(); draw();
+    }
+  }
+  requestAnimationFrame(step);
+}
+
+function startHydraulicPlacement(){
+  cancelAnim();
+  if(!hydraulicsPlacementReady()){
+    update();draw();
+    return;
+  }
+  s.hosesConnected=false;
+  s.pistonZero=false;
+  s.pressureBlocked=false;
+  const target=hydraulicsPlacementTarget();
+  const startT=s.cylThreadTravel;
+  if(startT<=target+1e-6){ update(); draw(); return; }
+  const anim={run:true,type:'hydPlace',last:performance.now(),rate:Math.max(0.004,(startT-target)/2500)};
+  s.anim=anim;
+  function step(ts){
+    if(!anim.run) return;
+    const dt=Math.max(0,ts-anim.last); anim.last=ts;
+    const delta=anim.rate*dt;
+    const next=Math.max(target, s.cylThreadTravel-delta);
+    const actual=next-s.cylThreadTravel;
+    s.cylThreadTravel=next;
+    s.cylRotation += travelToAngle(actual);
+    update();draw();
+    if(anim.run && s.cylThreadTravel>target+1e-6){
+      requestAnimationFrame(step);
+    }else if(anim.run){
+      cancelAnim(); update(); draw();
+    }
+  }
+  requestAnimationFrame(step);
+}
+
+function startHydraulicBackoff(){
+  cancelAnim();
+  if(!(s.pressure===0 && hydraulicsVisible() && assemblySeated() && s.hosesConnected && s.pistonZero)){
+    update();draw();
+    return;
+  }
+  const target=requiredBackoffTravel();
+  const startT=s.cylThreadTravel;
+  const anim={run:true,type:'hydBackoff',last:performance.now(),rate:Math.max(0.003,(target-startT)/1600)};
+  s.anim=anim;
+  function step(ts){
+    if(!anim.run) return;
+    const dt=Math.max(0,ts-anim.last); anim.last=ts;
+    const next=Math.min(target,s.cylThreadTravel+anim.rate*dt);
+    const actual=next-s.cylThreadTravel;
+    s.cylThreadTravel=next;
+    s.cylRotation += travelToAngle(actual);
+    update();draw();
+    if(anim.run && s.cylThreadTravel<target-1e-6){
+      requestAnimationFrame(step);
+    }else if(anim.run){
+      s.cylThreadTravel=target;
+      cancelAnim(); update(); draw();
+    }
+  }
+  requestAnimationFrame(step);
+}
+
+function startNutFiveHoleLoosen(){
+  cancelAnim();
+  const target=nutFiveHoleTravel();
+  if(!(hydraulicsVisible() && s.pressure>=s.releasePressure && s.threadTravel<target-0.01)){
+    update();draw();
+    return;
+  }
+  const anim={run:true,type:'nut5',last:performance.now(),rate:Math.max(0.003,(target-s.threadTravel)/1600)};
+  s.anim=anim;
+  function step(ts){
+    if(!anim.run) return;
+    const dt=Math.max(0,ts-anim.last); anim.last=ts;
+    const next=Math.min(target,s.threadTravel+anim.rate*dt);
+    const actual=next-s.threadTravel;
+    s.threadTravel=next;
+    s.nutRotation += travelToAngle(actual);
+    s.nutPlay=0;
+    update();draw();
+    if(anim.run && s.threadTravel<target-1e-6){
+      requestAnimationFrame(step);
+    }else if(anim.run){
+      s.threadTravel=target;
+      cancelAnim(); update(); draw();
+    }
+  }
+  requestAnimationFrame(step);
+}
+
+function startHydraulicUnscrew(){
+  cancelAnim();
+  if(!hydraulicsReadyToRemove() || hydraulicsRemoved()){
+    update();draw();
+    return;
+  }
+  s.hosesConnected=false;
+  s.pistonZero=false;
+  const anim={run:true,type:'hydUnscrew',last:performance.now(),rate:s.cylMaxThreadTravel/6000};
+  s.anim=anim;
+  function step(ts){
+    if(!anim.run || s.anim!==anim) return;
+    const dt=Math.max(0,Math.min(250,ts-anim.last));
+    anim.last=ts;
+    const previous=s.cylThreadTravel;
+    const next=clamp(previous+anim.rate*dt,0,s.cylMaxThreadTravel);
+    const actual=next-previous;
+    s.cylThreadTravel=next;
+    s.cylRotation += travelToAngle(actual);
+    update();draw();
+    if(s.cylThreadTravel < s.cylMaxThreadTravel-1e-6){
+      requestAnimationFrame(step);
+    }else{
+      s.cylThreadTravel=s.cylMaxThreadTravel;
+      s.anim=null;
+      update();draw();
+    }
+  }
+  requestAnimationFrame(step);
+}
+function startNutUnscrew(){
+  cancelAnim();
+  if(!(hydraulicsRemoved() && s.pressure===0 && nutReadyToRemove()) || nutRemoved()){
+    update();draw();
+    return;
+  }
+  const anim={run:true,type:'nutUnscrew',last:performance.now(),rate:s.maxThreadTravel/6000};
+  s.anim=anim;
+  function step(ts){
+    if(!anim.run) return;
+    const dt=Math.max(0,ts-anim.last); anim.last=ts;
+    const delta=anim.rate*dt;
+    s.threadTravel=clamp(s.threadTravel+delta,0,s.maxThreadTravel);
+    s.nutRotation += (delta/s.pitch)*TAU;
+    if(!hydraulicsVisible()){
+      // Once the hydraulic assembly has been removed, only the nut's own unscrewing
+      // command may change its visible position. Start from the position in which the
+      // nut was left when the hydraulic assembly moved away.
+      s.nutPlay=clamp(s.nutPlay+delta,0,s.maxThreadTravel);
+    }else if(s.pressure===0 && zeroTensionState()){
+      s.nutPlay=clamp(s.nutPlay,0,freeGap());
+    }
+    update();draw();
+    if(anim.run && s.threadTravel < s.maxThreadTravel-1e-6){
+      requestAnimationFrame(step);
+    }else if(anim.run){
+      cancelAnim(); update(); draw();
+    }
+  }
+  requestAnimationFrame(step);
+}
+
+function pos(ev){const r=canvas.getBoundingClientRect();return{x:(ev.clientX-r.left)*(W/Math.max(1,r.width)),y:(ev.clientY-r.top)*(H/Math.max(1,r.height))};}
+function dist(x1,y1,x2,y2){return Math.hypot(x1-x2,y1-y2);}
+function pointerInMagnifier(p){return s.magnifierEnabled && Number.isFinite(s.magnifierX) && Number.isFinite(s.magnifierY) && dist(p.x,p.y,s.magnifierX,s.magnifierY)<=s.magnifierRadius;}
+function handleCenter(){let a=displayAngle(activeAngle());return{x:front.cx+front.r*1.12*Math.cos(a),y:front.cy+front.r*1.12*Math.sin(a),a};}
+function pointerAngle(p){return -Math.atan2(p.y-front.cy,p.x-front.cx);} // inverse mapping for reversed left-view motion
+function begin(ev){
+  cancelAnim();
+  let p=pos(ev);
+
+  // Magnifier drag has priority over the simulator's mechanical drag targets.
+  if(pointerInMagnifier(p)){
+    s.draggingMagnifier=true;
+    s.magnifierGrabX=p.x-s.magnifierX;
+    s.magnifierGrabY=p.y-s.magnifierY;
+    canvas.classList.add('dragging');
+    try{canvas.setPointerCapture(ev.pointerId);}catch(_e){}
+    ev.preventDefault();
+    return;
+  }
+
+  // J-Cylinder peripheral holes: manual selection and drag, only at 0 bar.
+  if(side.cylVisibleHoles&&side.cylVisibleHoles.length){
+    for(const h of side.cylVisibleHoles){
+      if(dist(p.x,p.y,h.x,h.y)<=Math.max(11,h.rx+7)){
+        s.cylActiveHole=h.i;
+        s.cylStrokeProgress=clamp(h.rel/s.slotSpan,0,1);
+        update();draw();
+        if(cylCanRotate() && (s.commandMode || stepAllowed(4))){
+          s.cylOperation=1;
+          s.draggingCylinder=true;
+          canvas.classList.add('dragging');
+        }else{
+          flash();
+        }
+        ev.preventDefault();
+        return;
+      }
+    }
+  }
+
+  // Manual nut operation: click the visible nut holes (through the slot or directly when the nut is exposed).
+  if(side.visibleHoles&&side.visibleHoles.length){
+    for(const h of side.visibleHoles){
+      if(dist(p.x,p.y,h.x,h.y)<=Math.max(11,h.rx+7)){
+        s.activeHole=h.i;
+        s.strokeProgress=clamp(h.rel/s.slotSpan,0,1);
+        update();draw();
+
+        if(nutManualOperationAllowed()){
+          s.operation=isTightenWorkflow()?-1:1;
+          s.dragStartX=p.x;
+          s.dragStartTravel=s.threadTravel;
+          s.dragStartProgress=s.strokeProgress;
+          s.dragStartRotation=s.nutRotation;
+          s.draggingHandle=true;
+          canvas.classList.add('dragging');
+        }else{
+          flash();
+        }
+        ev.preventDefault();
+        return;
+      }
+    }
+  }
+
+  const b=side.nutBox;
+  if(freeGap()>0&&b&&p.x>=b.left&&p.x<=b.right&&p.y>=b.top&&p.y<=b.bottom){
+    s.draggingNut=true;
+    s.grabOffset=p.y-b.bottom;
+    canvas.classList.add('dragging');
+    ev.preventDefault();
+  }
+}
+function move(ev){
+  let p=pos(ev);
+
+  if(s.draggingMagnifier){
+    const r=s.magnifierRadius;
+    s.magnifierX=clamp(p.x-s.magnifierGrabX,0,W);
+    s.magnifierY=clamp(p.y-s.magnifierGrabY,0,H);
+    draw();
+    ev.preventDefault();
+    return;
+  }
+
+  const overMagnifier=pointerInMagnifier(p);
+  let overCHole = side.cylVisibleHoles && side.cylVisibleHoles.some(h=>dist(p.x,p.y,h.x,h.y)<=Math.max(11,h.rx+7));
+  let overCTrack = side.cylTrack && p.x>=side.cylTrack.x-8 && p.x<=side.cylTrack.x+side.cylTrack.w+8 && p.y>=side.cylTrack.y-18 && p.y<=side.cylTrack.y+18;
+  let overHole = side.visibleHoles && side.visibleHoles.some(h=>dist(p.x,p.y,h.x,h.y)<=Math.max(11,h.rx+7));
+  let overSlot = ((side.slot && p.x>=side.slot.x && p.x<=side.slot.x+side.slot.w && p.y>=side.slot.y-10 && p.y<=side.slot.y+side.slot.h+10) || (side.nutTrack && p.x>=side.nutTrack.x && p.x<=side.nutTrack.x+side.nutTrack.w && p.y>=side.nutTrack.y-18 && p.y<=side.nutTrack.y+18));
+  let overNut = side.nutBox&&freeGap()>0&&p.x>=side.nutBox.left&&p.x<=side.nutBox.right&&p.y>=side.nutBox.top&&p.y<=side.nutBox.bottom;
+  canvas.classList.toggle('canDrag', !!(overMagnifier || overCHole || overCTrack || overHole || overSlot || overNut));
+
+  if(s.draggingCylinder){
+    if(!cylCanRotate() || !stepAllowed(4)){flash();s.draggingCylinder=false;canvas.classList.remove('dragging');return;}
+    const tr=side.cylTrack;
+    if(tr){
+      let prog=clamp((p.x-tr.x)/tr.w,0,1);
+      applyCylStrokeProgress(prog);
+      update();draw();
+      ev.preventDefault();
+      return;
+    }
+  }
+
+  if(s.draggingHandle){
+    if(!nutManualOperationAllowed()){flash();s.draggingHandle=false;canvas.classList.remove('dragging');return;}
+    const sl=side.slot || side.nutTrack;
+    if(sl){
+      if(s.commandMode && typeof gangNutTestMode==='function' && gangNutTestMode()){
+        const dx=p.x-s.dragStartX;
+        const freeNow=canRotate();
+        if(Math.abs(dx)>=6 && typeof gangRegisterNutTest==='function') gangRegisterNutTest(freeNow);
+        // A free nut visibly wiggles with the tommy bar without changing axial thread travel.
+        // A tight nut remains stationary, allowing the trainee to feel/see the difference.
+        if(freeNow){
+          const maxWiggle=7*DEG;
+          const wiggle=clamp(dx/Math.max(1,sl.w)*24*DEG,-maxWiggle,maxWiggle);
+          s.nutRotation=s.dragStartRotation+wiggle;
+          s.strokeProgress=clamp(s.dragStartProgress+dx/Math.max(1,sl.w),0,1);
+        }else{
+          s.nutRotation=s.dragStartRotation;
+          s.strokeProgress=s.dragStartProgress;
+        }
+        update();draw();
+        ev.preventDefault();
+        return;
+      }
+      if(isTightenWorkflow() && hydraulicsVisible() && tighteningPressureCorrect()){
+        // At 2200 bar the available tightening travel is exactly the 1.50 mm stud elongation.
+        // The active hole starts at the right-hand end of the slot; dragging left advances
+        // the nut toward the contact face. This mapping remains active until pointer release.
+        const dx=p.x-s.dragStartX;
+        const travelPerPixel=s.releaseLift/Math.max(1,sl.w);
+        // Tightening direction follows the actual side from which the active hole starts.
+        // Active hole on the left: drag right. Active hole on the right: drag left.
+        const slotCentreX=sl.x+sl.w/2;
+        const tighteningDirection=s.dragStartX<=slotCentreX ? 1 : -1;
+        const tighteningDistance=clamp(dx*tighteningDirection,0,sl.w);
+        const target=clamp(s.dragStartTravel-tighteningDistance*travelPerPixel,-currentLift(),Math.max(0,s.dragStartTravel));
+        const actual=target-s.threadTravel;
+        if(Math.abs(actual)>1e-9){
+          s.threadTravel=target;
+          s.nutRotation+=travelToAngle(actual);
+        }
+        s.strokeProgress=clamp(s.dragStartProgress+dx/Math.max(1,sl.w),0,1);
+        s.operation=-1;
+      }else{
+        let prog=clamp((p.x-sl.x)/sl.w,0,1);
+        applyStrokeProgress(prog);
+      }
+      update();draw();
+      ev.preventDefault();
+      return;
+    }
+  }
+
+  if(s.draggingNut){
+    let bottom=p.y-s.grabOffset;
+    s.nutPlay=clamp((side.coverY-bottom)/side.scale,0,freeGap());
+    update();draw();
+    ev.preventDefault();
+    return;
+  }
+}
+function snapManualHolePositions(snapCylinder=false,snapNut=false){
+  const step=holeTravel();
+
+  // Snap only the component that was actually dragged.
+  // A nut drag after step 9 must never modify cylThreadTravel, otherwise a fully
+  // removed hydraulic jack can be pulled back from its removal limit and reappear.
+  if(snapCylinder && s.pressure===0 && !s.internalJam && !hydraulicsRemoved()){
+    const target=clamp(Math.round(s.cylThreadTravel/step)*step,0,s.cylMaxThreadTravel-step);
+    const delta=target-s.cylThreadTravel;
+    s.cylThreadTravel=target;
+    s.cylRotation+=travelToAngle(delta);
+  }
+  if(snapNut && canRotate()){
+    const maxManual=Math.min(s.maxThreadTravel-step,hydraulicsVisible()?s.spacerH-s.nutH:s.maxThreadTravel-step);
+    // In Screw-nut Step 6 the stud elongation permits the nut to advance below
+    // the original zero-travel reference by up to the hydraulic lift (1.50 mm at 2200 bar).
+    // Preserve that negative tightening travel when the pointer is released instead of
+    // snapping the nut back to 0 mm.
+    const minManual=(isTightenWorkflow() && s.pressure>0) ? -currentLift() : 0;
+    const target=clamp(Math.round(s.threadTravel/step)*step,minManual,maxManual);
+    const delta=target-s.threadTravel;
+    s.threadTravel=target;
+    s.nutRotation+=travelToAngle(delta);
+    if(isTightenWorkflow() && tighteningPressureCorrect()){
+      s.tightenCompleted=pressureGap()<=0.05;
+    }
+  }
+}
+function end(){
+  const hadCylinderDrag=s.draggingCylinder;
+  const hadNutHandleDrag=s.draggingHandle;
+  const hadMagnifierDrag=s.draggingMagnifier;
+  const wasGangTest=!!(s.commandMode && hadNutHandleDrag && typeof gangNutTestMode==='function' && gangNutTestMode());
+  if(wasGangTest){
+    // The checking movement is a reversible wiggle only.
+    s.nutRotation=s.dragStartRotation;
+    s.strokeProgress=s.dragStartProgress;
+  }else if(hadCylinderDrag || hadNutHandleDrag){
+    snapManualHolePositions(hadCylinderDrag,hadNutHandleDrag);
+  }
+  s.draggingCylinder=false;
+  s.draggingHandle=false;
+  s.draggingNut=false;
+  s.draggingMagnifier=false;
+  s.dragStartX=0;
+  s.dragStartTravel=s.threadTravel;
+  s.dragStartProgress=s.strokeProgress;
+  canvas.classList.remove('dragging');
+  update();draw();
+}
+let flashN=0;function flash(){flashN=20;draw();}
+function resize(){DPR=Math.max(1,Math.min(2.5,devicePixelRatio||1));W=Math.max(650,Math.floor(canvas.clientWidth||window.innerWidth));H=Math.max(520,Math.floor(canvas.clientHeight||window.innerHeight));canvas.width=Math.floor(W*DPR);canvas.height=Math.floor(H*DPR);magnifierBuffer.width=canvas.width;magnifierBuffer.height=canvas.height;ctx.setTransform(DPR,0,0,DPR,0,0);front.cx=0;front.cy=0;front.r=0;side.x=24;side.y=30;side.w=W-48;side.h=H-60;side.coverY=H*.75;const sx=(side.w*.44)/s.nutOD;const sy=(side.coverY-72)/(s.studLen+s.releaseLift+8);side.scale=Math.max(.72,Math.min(2.0,sx,sy));const mr=s.magnifierRadius;if(!Number.isFinite(s.magnifierX)||!Number.isFinite(s.magnifierY)){s.magnifierX=W*.64;s.magnifierY=H*.56;}s.magnifierX=clamp(s.magnifierX,0,W);s.magnifierY=clamp(s.magnifierY,0,H);draw();}
+function roundRect(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();}
+function arrow(x1,y1,x2,y2,color){ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();let a=Math.atan2(y2-y1,x2-x1),sz=7;ctx.beginPath();ctx.moveTo(x2,y2);ctx.lineTo(x2-sz*Math.cos(a-Math.PI/6),y2-sz*Math.sin(a-Math.PI/6));ctx.lineTo(x2-sz*Math.cos(a+Math.PI/6),y2-sz*Math.sin(a+Math.PI/6));ctx.closePath();ctx.fill();}
+function drawFront(){ctx.save();ctx.translate(front.cx,front.cy);ctx.fillStyle='#fff';ctx.font='bold 14px Arial';ctx.textAlign='center';ctx.fillText('Circular view / 100° slot',0,-front.cy+32);ctx.strokeStyle='rgba(255,255,255,.10)';ctx.lineWidth=1;ctx.beginPath();ctx.arc(0,0,front.r*1.38,0,TAU);ctx.stroke();ctx.strokeStyle='rgba(118,183,255,.80)';ctx.lineWidth=18;ctx.lineCap='round';ctx.beginPath();ctx.arc(0,0,front.r*1.30,displayAngle(slotEnd()),displayAngle(s.slotStart));ctx.stroke();
+ctx.save();
+const retFromModel = s.operation===1 ? slotEnd() : s.slotStart;
+const retToModel = s.operation===1 ? s.slotStart : slotEnd();
+const retFrom = displayAngle(retFromModel);
+const retTo = displayAngle(retToModel);
+ctx.strokeStyle='rgba(255,255,255,.50)';
+ctx.lineWidth=2;
+ctx.setLineDash([6,5]);
+ctx.beginPath();
+ctx.arc(0,0,front.r*1.55,retFrom,retTo);
+ctx.stroke();
+ctx.setLineDash([]);
+
+let rfx=front.r*1.55*Math.cos(retFrom), rfy=front.r*1.55*Math.sin(retFrom);
+let rtx=front.r*1.55*Math.cos(retTo), rty=front.r*1.55*Math.sin(retTo);
+ctx.fillStyle='rgba(255,255,255,.58)';
+ctx.beginPath();ctx.arc(rfx,rfy,4,0,TAU);ctx.fill();
+ctx.fillStyle='rgba(255,230,140,.92)';
+ctx.beginPath();ctx.arc(rtx,rty,6,0,TAU);ctx.fill();
+ctx.font='11px Arial';
+ctx.fillStyle='rgba(255,255,255,.88)';
+ctx.fillText(s.operation===1?'Reposition: end → start':'Reposition: start → end',0,front.r*1.96);
+ctx.fillText('without nut rotation',0,front.r*2.10);
+ctx.restore();ctx.fillStyle='#2a333e';ctx.strokeStyle='rgba(255,255,255,.26)';ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,0,front.r,0,TAU);ctx.fill();ctx.stroke();ctx.fillStyle='#101820';ctx.beginPath();ctx.arc(0,0,front.r*(130/225),0,TAU);ctx.fill();ctx.strokeStyle='rgba(240,184,78,.28)';ctx.lineWidth=1.4;for(let k=0;k<7;k++){ctx.beginPath();ctx.arc(0,0,front.r*(130/225)*(0.76+k*.035),0,TAU);ctx.stroke();}
+for(let i=0;i<s.holeCount;i++){let modelA=holeAngle(i),a=displayAngle(modelA),rel=slotRel(modelA),vis=rel<=s.slotSpan+1e-6,x=front.r*1.02*Math.cos(a),y=front.r*1.02*Math.sin(a),active=i===s.activeHole;ctx.fillStyle=active?'#f0b84e':(vis?'#d4dde7':'#68727e');ctx.globalAlpha=vis?1:.35;ctx.beginPath();ctx.arc(x,y,active?8:6,0,TAU);ctx.fill();ctx.globalAlpha=1;ctx.strokeStyle=active?'#fff':'rgba(255,255,255,.35)';ctx.stroke();ctx.fillStyle=vis?'#fff':'#9ca7b3';ctx.font='10px Arial';ctx.textAlign='center';ctx.fillText(String(i+1),x,y-11);}ctx.strokeStyle='rgba(118,183,255,.95)';ctx.lineWidth=3;[s.slotStart,slotEnd()].forEach(modelA=>{let a=displayAngle(modelA);ctx.beginPath();ctx.moveTo(front.r*.62*Math.cos(a),front.r*.62*Math.sin(a));ctx.lineTo(front.r*1.5*Math.cos(a),front.r*1.5*Math.sin(a));ctx.stroke();});let h=handleCenter(),hx=h.x-front.cx,hy=h.y-front.cy,locked=!canRotate();ctx.strokeStyle=locked?'#8e9aa7':'#f0b84e';ctx.lineWidth=8;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(front.r*.88*Math.cos(h.a),front.r*.88*Math.sin(h.a));ctx.lineTo(front.r*1.42*Math.cos(h.a),front.r*1.42*Math.sin(h.a));ctx.stroke();ctx.fillStyle=locked?'#8e9aa7':'#f0b84e';ctx.beginPath();ctx.arc(hx,hy,13,0,TAU);ctx.fill();ctx.strokeStyle='rgba(255,255,255,.75)';ctx.lineWidth=2;ctx.stroke();ctx.fillStyle=locked?'#d8dee6':'#101820';ctx.font='bold 11px Arial';ctx.fillText('Ø12',hx,hy+4);if(locked||flashN>0){ctx.fillStyle=flashN>0?'#ffd6d8':'#d8dee6';ctx.font='bold 16px Arial';ctx.fillText('LOCKED',0,front.r*1.62);if(flashN>0)flashN--;}ctx.fillStyle='#d8e0ea';ctx.font='12px Arial';ctx.fillText('Stroke: '+(s.strokeProgress*100).toFixed(0)+'°',0,front.r*1.78);ctx.restore();}
+function drawSide(){
+const sc=side.scale,cx=side.x+side.w*.52,coverY=side.coverY,nutW=s.nutOD*sc,nutH=s.nutH*sc,studW=s.studDia*sc,gap=visualGap(),nutBottom=coverY-gap*sc,nutTop=nutBottom-nutH,studBottom=coverY,studTop=coverY-(s.studLen+currentLift())*sc;
+side.nutBox={left:cx-nutW/2,top:nutTop,right:cx+nutW/2,bottom:nutBottom}; side.visibleHoles=[]; side.cylVisibleHoles=[]; side.cylTrack=null; side.slot=null; side.nutTrack=null;
+
+ctx.textAlign='left';
+
+// Cover plane
+ctx.strokeStyle='rgba(255,255,255,.20)';ctx.setLineDash([5,5]);ctx.beginPath();ctx.moveTo(side.x,coverY);ctx.lineTo(side.x+side.w,coverY);ctx.stroke();ctx.setLineDash([]);
+ctx.fillStyle='#33404d';ctx.fillRect(side.x+8,coverY,side.w-16,H-coverY);
+ctx.strokeStyle='rgba(255,255,255,.45)';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(side.x+12,coverY);ctx.lineTo(side.x+side.w-12,coverY);ctx.stroke();
+ctx.fillStyle='#d8e0ea';ctx.font='12px Arial';ctx.fillText('Cylinder-cover contact face',side.x+18,coverY+18);
+
+if(nutVisible() && freeGap()>0){
+  let top=coverY-freeGap()*sc;
+  ctx.strokeStyle='rgba(107,191,89,.48)';ctx.setLineDash([3,4]);
+  ctx.beginPath();ctx.moveTo(cx-nutW/2-18,top);ctx.lineTo(cx+nutW/2+18,top);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(cx-nutW/2-18,coverY);ctx.lineTo(cx+nutW/2+18,coverY);ctx.stroke();
+  ctx.setLineDash([]);ctx.fillStyle='#dcffd7';ctx.fillText('Free axial movement 0–'+freeGap().toFixed(2)+' mm',cx-nutW/2-18,top-8);
+}
+
+// Stud external parts
+ctx.fillStyle='#5c6672';
+if(nutVisible()){
+  ctx.fillRect(cx-studW/2,studTop,studW,Math.max(0,nutTop-studTop));
+  ctx.fillRect(cx-studW/2,nutBottom,studW,Math.max(0,studBottom-nutBottom));
+  ctx.strokeStyle='rgba(240,184,78,.35)';ctx.lineWidth=1;
+  for(let y=studTop+8;y<nutTop-2;y+=10){ctx.beginPath();ctx.moveTo(cx-studW/2,y);ctx.lineTo(cx+studW/2,y+5);ctx.stroke();}
+  for(let y=nutBottom+8;y<studBottom-2;y+=10){ctx.beginPath();ctx.moveTo(cx-studW/2,y);ctx.lineTo(cx+studW/2,y+5);ctx.stroke();}
+}else{
+  ctx.fillRect(cx-studW/2,studTop,studW,Math.max(0,studBottom-studTop));
+  ctx.strokeStyle='rgba(240,184,78,.35)';ctx.lineWidth=1;
+  for(let y=studTop+8;y<studBottom-2;y+=10){ctx.beginPath();ctx.moveTo(cx-studW/2,y);ctx.lineTo(cx+studW/2,y+5);ctx.stroke();}
+}
+
+// Digital load indication in tf, based on the fixed ratio 2200 bar = 594 tf.
+// Position: 40 px above the top end of the visible stud.
+const tfVal=(s.pressure/s.releasePressure)*594;
+const tfText=tfVal.toFixed(1).replace('.0','')+' tf';
+ctx.save();
+ctx.font='bold 18px Arial';
+ctx.textAlign='center';
+ctx.textBaseline='middle';
+const tfMetrics=ctx.measureText(tfText);
+const tfBoxW=Math.max(92, tfMetrics.width+24);
+const tfBoxH=30;
+const tfBoxX=cx-tfBoxW/2;
+const tfBoxY=Math.max(side.y+6, studTop-40-tfBoxH);
+ctx.fillStyle='rgba(0,0,0,.52)';
+roundRect(tfBoxX,tfBoxY,tfBoxW,tfBoxH,8);ctx.fill();
+ctx.strokeStyle='rgba(118,183,255,.45)';ctx.lineWidth=1.4;
+roundRect(tfBoxX,tfBoxY,tfBoxW,tfBoxH,8);ctx.stroke();
+ctx.fillStyle='#d9ecff';
+ctx.fillText(tfText,cx,tfBoxY+tfBoxH/2+1);
+ctx.restore();
+
+// Visible retained stud-tension indication. During tightening it follows the hydraulic
+// pull until the nut is tightened; thereafter the locked-in value remains at 0 bar.
+const studTensionTf=studTensionDisplayTf();
+const studTensionText='ACTUAL STUD TENSION  '+studTensionTf.toFixed(1).replace('.0','')+' tf';
+ctx.save();
+ctx.font='bold 15px Arial';
+ctx.textAlign='center';
+ctx.textBaseline='middle';
+const studTensionMetrics=ctx.measureText(studTensionText);
+const studTensionBoxW=Math.max(170,studTensionMetrics.width+24);
+const studTensionBoxH=30;
+const studTensionBoxX=cx-studTensionBoxW/2;
+const studTensionBoxY=tfBoxY+tfBoxH+6;
+ctx.fillStyle='rgba(0,0,0,.58)';
+roundRect(studTensionBoxX,studTensionBoxY,studTensionBoxW,studTensionBoxH,8);ctx.fill();
+ctx.strokeStyle='rgba(240,184,78,.65)';ctx.lineWidth=1.5;
+roundRect(studTensionBoxX,studTensionBoxY,studTensionBoxW,studTensionBoxH,8);ctx.stroke();
+ctx.fillStyle='#ffe29a';
+ctx.fillText(studTensionText,cx,studTensionBoxY+studTensionBoxH/2+1);
+ctx.restore();
+
+// Geometry of spacer and slot
+const hy=nutTop+s.holeCenter*sc;
+const spacerW=s.spacerOD*sc;
+const spacerH=s.spacerH*sc;
+const spacerBottom=coverY-assemblyLift()*sc; // K-Support-ring follows the J-Cylinder only axially
+const spacerTop=spacerBottom-spacerH;
+const slotBottom=spacerBottom - s.slotBottomFromBase*sc;
+const slotTop=spacerBottom - s.slotTopFromBase*sc;
+const slotH=slotBottom-slotTop;
+const slotW=Math.min(spacerW*0.56, nutW*0.62); // shorter visual slot length
+const slotX=cx-slotW/2;
+side.slot={x:slotX,y:slotTop,w:slotW,h:slotH,hy:hy};
+
+if(hydraulicsVisible()){
+// H-Piston / J-Cylinder assembly refined again to more closely follow the user's sectional sketch.
+// Fixed / known data:
+// - J-Cylinder OD = K-Support ring OD
+// - H-Piston internal thread / bore = M130×6
+// - H-Piston height = 130 mm
+// Other dimensions remain working proportional assumptions.
+const jW=s.jCylinderOD*sc;
+const jH=122*sc;
+const jTopStep=10*sc;            // from the sketch note
+const jSideWall=25*sc;
+const jBottomWall=18*sc;
+const jLip=11*sc;                // upper inner lip / shoulder of J
+const jShoulderY=34*sc;
+const jBottom=spacerTop;
+const jTop=jBottom-jH;
+
+const innerSpan=jW-2*jSideWall;
+const pocketTop=jTop+jTopStep;
+const pocketBottom=jBottom-jBottomWall;
+const shoulderY=pocketTop+jShoulderY;
+
+const pID=s.hPistonID*sc;
+const pH=s.hPistonH*sc;
+const pCapW=innerSpan-2*jLip;         // upper H flange nearly reaches J inner lips
+const pCapT=25*sc;
+const pStemW=Math.max(pID+22*sc, 156*sc);
+const pStemH=pH-pCapT;
+const pBottom=jBottom-visualPistonRise()*sc;
+const pTop=pBottom-pH;
+const pCapY=pTop;
+const pStemY=pTop+pCapT;
+
+// J-Cylinder and H-Piston: opaque rendering with no see-through.
+// The piston portion inside J is hidden by the opaque cylinder body.
+let hVisibleH=Math.max(18*sc, pCapT);
+let hVisibleY=Math.min(pCapY, jTop-6*sc);
+let hVisibleW=pCapW;
+let hGrad=ctx.createLinearGradient(cx-hVisibleW/2,hVisibleY,cx+hVisibleW/2,hVisibleY);
+hGrad.addColorStop(0,'#4c5966');
+hGrad.addColorStop(.18,'#74818d');
+hGrad.addColorStop(.50,'#c0c9d1');
+hGrad.addColorStop(.82,'#6a7580');
+hGrad.addColorStop(1,'#3d4853');
+// Draw only the externally visible H part first.
+ctx.fillStyle=hGrad;
+roundRect(cx-hVisibleW/2,hVisibleY,hVisibleW,hVisibleH,6);ctx.fill();
+ctx.strokeStyle='#eef3f7';ctx.lineWidth=1.6;
+roundRect(cx-hVisibleW/2,hVisibleY,hVisibleW,hVisibleH,6);ctx.stroke();
+ctx.fillStyle='#ebf1f7';
+ctx.font='bold 12px Arial';
+ctx.textAlign='left';
+ctx.fillText('H',cx-hVisibleW/2-24,hVisibleY+10);
+
+// Now draw the opaque J-Cylinder over any internal piston area.
+let jGrad=ctx.createLinearGradient(cx-jW/2,jTop,cx+jW/2,jTop);
+jGrad.addColorStop(0,'#202a34');
+jGrad.addColorStop(.12,'#36424f');
+jGrad.addColorStop(.50,'#65717e');
+jGrad.addColorStop(.88,'#323d49');
+jGrad.addColorStop(1,'#1d2630');
+ctx.fillStyle=jGrad;
+roundRect(cx-jW/2,jTop,jW,jH,8);ctx.fill();
+ctx.strokeStyle='#c9d1da';ctx.lineWidth=2.1;
+roundRect(cx-jW/2,jTop,jW,jH,8);ctx.stroke();
+
+// Solid cylinder curvature and metallic shading only; no cavity/cutaway is drawn.
+ctx.strokeStyle='#8c98a4';ctx.lineWidth=1.2;
+ctx.beginPath();ctx.ellipse(cx,jTop+5,jW/2-6,9,0,Math.PI,TAU);ctx.stroke();
+ctx.beginPath();ctx.ellipse(cx,jBottom-5,jW/2-6,9,0,0,Math.PI);ctx.stroke();
+ctx.strokeStyle='#1a2129';ctx.lineWidth=1.1;
+ctx.beginPath();ctx.moveTo(cx-jW*.05,jTop+8);ctx.lineTo(cx-jW*.05,jBottom-8);ctx.stroke();
+ctx.beginPath();ctx.moveTo(cx+jW*.31,jTop+8);ctx.lineTo(cx+jW*.31,jBottom-8);ctx.stroke();
+ctx.strokeStyle='#7d8995';ctx.lineWidth=1.0;
+ctx.beginPath();ctx.moveTo(cx-jW*.28,jTop+8);ctx.lineTo(cx-jW*.28,jBottom-8);ctx.stroke();
+ctx.beginPath();ctx.moveTo(cx+jW*.16,jTop+8);ctx.lineTo(cx+jW*.16,jBottom-8);ctx.stroke();
+
+ctx.fillStyle='#ebf1f7';
+ctx.font='bold 12px Arial';
+ctx.textAlign='left';
+ctx.fillText('J',cx+jW/2+12,jTop+jH*0.58);
+ctx.fillStyle='#d8e0ea';
+ctx.font='11px Arial';
+ctx.textAlign='center';
+ctx.fillText('J-CYLINDER · OPAQUE BODY',cx,jTop-8);
+ctx.fillText('H visible externally only',cx,hVisibleY+hVisibleH+12);
+
+// 8 peripheral holes on the outer surface of J-Cylinder, operated similarly to the nut holes.
+const cylHoleY=jBottom-30*sc;
+const cylHoleDiaPxBase=jH*(12/130), cylHoleRadPxBase=cylHoleDiaPxBase/2;
+let cylVisibleHoles=[]; side.cylVisibleHoles=[];
+for(let i=0;i<s.holeCount;i++){
+  let a=cylHoleAngle(i)+Math.PI/2;
+  let c=Math.cos(a), sn=Math.sin(a);
+  if(c<=0.03) continue;
+  let x=cx+(jW/2)*sn;
+  let rx=Math.max(0.01,cylHoleRadPxBase*Math.abs(c)), ry=cylHoleRadPxBase*0.92;
+  const rel=slotRel(cylHoleAngle(i));
+  cylVisibleHoles.push({i,x,rx,ry,c,rel});
+}
+cylVisibleHoles.sort((A,B)=>A.c-B.c);
+for(const h of cylVisibleHoles){
+  const active=h.i===s.cylActiveHole;
+  ctx.fillStyle='rgba(0,0,0,.26)';
+  ctx.beginPath();ctx.ellipse(h.x+1,cylHoleY+1,h.rx*1.02,h.ry*1.02,0,0,TAU);ctx.fill();
+  const g=ctx.createRadialGradient(h.x-h.rx*.2,cylHoleY-h.ry*.28,1,h.x,cylHoleY,h.rx*1.12);
+  g.addColorStop(0,active?'#8ad7ff':'#25303a');
+  g.addColorStop(.35,active?'#2ca1d3':'#16202a');
+  g.addColorStop(1,'#040608');
+  ctx.fillStyle=g;
+  ctx.beginPath();ctx.ellipse(h.x,cylHoleY,h.rx,h.ry,0,0,TAU);ctx.fill();
+  ctx.strokeStyle=active?'rgba(222,246,255,.96)':'rgba(255,255,255,.24)';
+  ctx.lineWidth=1.05;ctx.beginPath();ctx.ellipse(h.x,cylHoleY,h.rx,h.ry,0,0,TAU);ctx.stroke();
+}
+side.cylVisibleHoles=cylVisibleHoles.map(h=>({i:h.i,x:h.x,y:cylHoleY,rx:h.rx,ry:h.ry,rel:h.rel}));
+const csel=cylVisibleHoles.find(h=>h.i===s.cylActiveHole);
+if(csel){
+  ctx.save();
+  ctx.strokeStyle=cylCanRotate()?'rgba(162,235,255,.98)':'rgba(180,188,196,.95)';
+  ctx.lineWidth=2.3;
+  ctx.setLineDash([3,3]);
+  ctx.beginPath();ctx.ellipse(csel.x,cylHoleY,csel.rx*1.85,csel.ry*1.85,0,0,TAU);ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle=cylCanRotate()?'rgba(162,235,255,.95)':'rgba(180,188,196,.90)';
+  ctx.font='bold 10px Arial';ctx.textAlign='center';
+  ctx.fillText('CYL ACTIVE',csel.x,cylHoleY-csel.ry*2.7);
+  ctx.restore();
+}
+// horizontal manual-drag guide for the cylinder pair rotation
+const cylTrackW=jW*0.58, cylTrackX=cx-cylTrackW/2;
+side.cylTrack={x:cylTrackX,w:cylTrackW,y:cylHoleY};
+ctx.strokeStyle='rgba(162,235,255,.55)';ctx.lineWidth=2;ctx.setLineDash([6,5]);
+ctx.beginPath();ctx.moveTo(cylTrackX,cylHoleY+18);ctx.lineTo(cylTrackX+cylTrackW,cylHoleY+18);ctx.stroke();ctx.setLineDash([]);
+ctx.fillStyle='rgba(162,235,255,.92)';ctx.font='11px Arial';ctx.textAlign='center';
+ctx.fillText('J-Cylinder · 8 holes · drag left/right at 0 bar',cx,cylHoleY+34);
+
+// Draw a CLEAR, visible spacer body.
+// Draw a CLEAR, visible spacer body.
+// Draw a CLEAR, visible spacer body. This is intentionally darker than the nut.
+let spGrad=ctx.createLinearGradient(cx-spacerW/2,spacerTop,cx+spacerW/2,spacerTop);
+spGrad.addColorStop(0,'#202a34');
+spGrad.addColorStop(.12,'#36424f');
+spGrad.addColorStop(.50,'#65717e');
+spGrad.addColorStop(.88,'#323d49');
+spGrad.addColorStop(1,'#1d2630');
+ctx.fillStyle=spGrad;
+roundRect(cx-spacerW/2,spacerTop,spacerW,spacerH,12);
+ctx.fill();
+ctx.strokeStyle='rgba(255,255,255,.55)';ctx.lineWidth=2.4;
+roundRect(cx-spacerW/2,spacerTop,spacerW,spacerH,12);ctx.stroke();
+
+// Spacer curvature/top-bottom ellipses
+ctx.strokeStyle='rgba(255,255,255,.20)';ctx.lineWidth=1.4;
+ctx.beginPath();ctx.ellipse(cx,spacerTop+5,spacerW/2-4,11,0,Math.PI,TAU);ctx.stroke();
+ctx.beginPath();ctx.ellipse(cx,spacerBottom-5,spacerW/2-4,11,0,0,Math.PI);ctx.stroke();
+
+// Slot cutout is drawn as a dark opening; nut segment will be drawn inside it
+ctx.fillStyle='#111820';
+roundRect(slotX,slotTop,slotW,slotH,slotH/2);ctx.fill();
+ctx.strokeStyle='rgba(255,220,110,.98)';ctx.lineWidth=2.6;
+roundRect(slotX,slotTop,slotW,slotH,slotH/2);ctx.stroke();
+
+// Through the slot: if a nut exists, show the nut and its holes.
+// Otherwise show only the stud.
+const holeDiaPxBase=nutH*(12/130), holeRadPxBase=holeDiaPxBase/2;
+let visibleHoles=[]; side.visibleHoles=[];
+
+ctx.save();
+roundRect(slotX,slotTop,slotW,slotH,slotH/2);
+ctx.clip();
+
+const slotReachesNut = nutVisible() && !(slotBottom < nutTop || slotTop > nutBottom);
+if(slotReachesNut){
+  // Nut surface becomes visible only when the slot reaches the nut height.
+  // The nut itself stays fixed in its own position; only the moving slot reveals it.
+  let nutGrad=ctx.createLinearGradient(cx-nutW/2,nutTop,cx+nutW/2,nutTop);
+  nutGrad.addColorStop(0,'#65717f');
+  nutGrad.addColorStop(.5,'#a9b4bf');
+  nutGrad.addColorStop(1,'#56616e');
+  ctx.fillStyle=nutGrad;
+  ctx.fillRect(cx-nutW/2,nutTop,nutW,nutH);
+
+  // holes visible only within slot and only after the slot reaches the nut.
+  for(let i=0;i<s.holeCount;i++){
+    let a=holeAngle(i)+Math.PI/2;
+    let c=Math.cos(a), sn=Math.sin(a);
+    if(c<=0.03) continue;
+    let x=cx+(nutW/2)*sn;
+    let rx=Math.max(0.01,holeRadPxBase*Math.abs(c)), ry=holeRadPxBase*0.92;
+    const rel=slotRel(holeAngle(i)); visibleHoles.push({i,x,rx,ry,c,rel});
+  }
+  visibleHoles.sort((A,B)=>A.c-B.c);
+  for(const h of visibleHoles){
+    const active=h.i===s.activeHole;
+    ctx.fillStyle='rgba(0,0,0,.25)';
+    ctx.beginPath();ctx.ellipse(h.x+1,hy+1,h.rx*1.02,h.ry*1.02,0,0,TAU);ctx.fill();
+    const g=ctx.createRadialGradient(h.x-h.rx*.2,hy-h.ry*.28,1,h.x,hy,h.rx*1.12);
+    g.addColorStop(0,active?'#f2d48a':'#25303a');
+    g.addColorStop(.3,active?'#d39d2c':'#16202a');
+    g.addColorStop(1,'#040608');
+    ctx.fillStyle=g;
+    ctx.beginPath();ctx.ellipse(h.x,hy,h.rx,h.ry,0,0,TAU);ctx.fill();
+    ctx.strokeStyle=active?'rgba(255,243,214,.95)':'rgba(255,255,255,.24)';
+    ctx.lineWidth=1.05;ctx.beginPath();ctx.ellipse(h.x,hy,h.rx,h.ry,0,0,TAU);ctx.stroke();
+  }
+  side.visibleHoles = visibleHoles.map(h=>({i:h.i,x:h.x,y:hy,rx:h.rx,ry:h.ry,rel:h.rel}));
+}else{
+  // Before the slot reaches the nut height (or after nut removal), show only the stud.
+  ctx.fillStyle='#5c6672';
+  ctx.fillRect(cx-studW/2,slotTop-2,studW,slotH+4);
+  ctx.strokeStyle='rgba(240,184,78,.35)';
+  ctx.lineWidth=1;
+  for(let y=slotTop-8; y<slotTop+slotH+8; y+=10){
+    ctx.beginPath();
+    ctx.moveTo(cx-studW/2,y);
+    ctx.lineTo(cx+studW/2,y+5);
+    ctx.stroke();
+  }
+}
+ctx.restore();
+
+// Active hole indication only when a nut exists. No handle extension is drawn.
+const sel = visibleHoles.find(h=>h.i===s.activeHole);
+if(sel){
+  ctx.save();
+  ctx.strokeStyle=canRotate()?'rgba(255,232,162,.98)':'rgba(180,188,196,.95)';
+  ctx.lineWidth=2.4;
+  ctx.setLineDash([3,3]);
+  ctx.beginPath();ctx.ellipse(sel.x,hy,sel.rx*1.85,sel.ry*1.85,0,0,TAU);ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle=canRotate()?'rgba(255,232,162,.95)':'rgba(180,188,196,.90)';
+  ctx.font='bold 11px Arial';
+  ctx.textAlign='center';
+  ctx.fillText('ACTIVE',sel.x,hy-sel.ry*2.6);
+  ctx.restore();
+}
+
+// Re-draw slot rim on top
+ctx.strokeStyle='rgba(255,220,110,.98)';ctx.lineWidth=2.6;
+roundRect(slotX,slotTop,slotW,slotH,slotH/2);ctx.stroke();
+
+// Spacer wall indication
+ctx.strokeStyle='rgba(0,0,0,.32)';ctx.lineWidth=2;
+ctx.beginPath();ctx.moveTo(cx-spacerW/2+18,spacerTop+12);ctx.lineTo(cx-spacerW/2+18,spacerBottom-12);ctx.stroke();
+ctx.beginPath();ctx.moveTo(cx+spacerW/2-18,spacerTop+12);ctx.lineTo(cx+spacerW/2-18,spacerBottom-12);ctx.stroke();
+ctx.fillStyle='rgba(235,241,247,.96)';ctx.font='bold 12px Arial';ctx.textAlign='center';ctx.fillText('K-SUPPORT RING',cx,spacerTop+17);
+
+// During hydraulic removal, the nut must remain in place and become visible below the rising hydraulic.
+if(nutVisible()){
+  const exposedTop=Math.max(nutTop, spacerBottom);
+  const exposedBottom=nutBottom;
+  if(exposedBottom>exposedTop+1){
+    let nutGradEx=ctx.createLinearGradient(cx-nutW/2,nutTop,cx+nutW/2,nutTop);
+    nutGradEx.addColorStop(0,'#65717f');
+    nutGradEx.addColorStop(.5,'#a9b4bf');
+    nutGradEx.addColorStop(1,'#56616e');
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(cx-nutW/2,exposedTop,nutW,exposedBottom-exposedTop);
+    ctx.clip();
+    ctx.fillStyle=nutGradEx;
+    roundRect(cx-nutW/2,nutTop,nutW,nutH,10); ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,.45)'; ctx.lineWidth=1.5;
+    roundRect(cx-nutW/2,nutTop,nutW,nutH,10); ctx.stroke();
+    ctx.restore();
+  }
+}
+
+}
+
+if(!hydraulicsVisible() && nutVisible()){
+// Standalone exposed nut after hydraulics removal.
+let nutGrad=ctx.createLinearGradient(cx-nutW/2,nutTop,cx+nutW/2,nutTop);
+nutGrad.addColorStop(0,'#65717f');
+nutGrad.addColorStop(.5,'#a9b4bf');
+nutGrad.addColorStop(1,'#56616e');
+ctx.fillStyle=nutGrad; roundRect(cx-nutW/2,nutTop,nutW,nutH,10); ctx.fill();
+ctx.strokeStyle='rgba(255,255,255,.58)'; ctx.lineWidth=2.0; roundRect(cx-nutW/2,nutTop,nutW,nutH,10); ctx.stroke();
+ctx.fillStyle='rgba(235,241,247,.96)';ctx.font='bold 12px Arial';ctx.textAlign='center';ctx.fillText('NUT',cx,nutTop+16);
+
+// Directly visible nut holes once the hydraulics are removed.
+const exposedHoleY=hy;
+const holeDiaPxBase=nutH*(12/130), holeRadPxBase=holeDiaPxBase/2;
+let visibleHoles=[]; side.visibleHoles=[];
+for(let i=0;i<s.holeCount;i++){
+  let a=holeAngle(i)+Math.PI/2;
+  let c=Math.cos(a), sn=Math.sin(a);
+  if(c<=0.03) continue;
+  let x=cx+(nutW/2)*sn;
+  let rx=Math.max(0.01,holeRadPxBase*Math.abs(c)), ry=holeRadPxBase*0.92;
+  const rel=slotRel(holeAngle(i)); visibleHoles.push({i,x,rx,ry,c,rel});
+}
+visibleHoles.sort((A,B)=>A.c-B.c);
+for(const h of visibleHoles){
+  const active=h.i===s.activeHole;
+  ctx.fillStyle='rgba(0,0,0,.25)';
+  ctx.beginPath();ctx.ellipse(h.x+1,exposedHoleY+1,h.rx*1.02,h.ry*1.02,0,0,TAU);ctx.fill();
+  const g=ctx.createRadialGradient(h.x-h.rx*.2,exposedHoleY-h.ry*.28,1,h.x,exposedHoleY,h.rx*1.12);
+  g.addColorStop(0,active?'#f2d48a':'#25303a');
+  g.addColorStop(.3,active?'#d39d2c':'#16202a');
+  g.addColorStop(1,'#040608');
+  ctx.fillStyle=g;
+  ctx.beginPath();ctx.ellipse(h.x,exposedHoleY,h.rx,h.ry,0,0,TAU);ctx.fill();
+  ctx.strokeStyle=active?'rgba(255,243,214,.95)':'rgba(255,255,255,.24)';
+  ctx.lineWidth=1.05;ctx.beginPath();ctx.ellipse(h.x,exposedHoleY,h.rx,h.ry,0,0,TAU);ctx.stroke();
+}
+side.visibleHoles = visibleHoles.map(h=>({i:h.i,x:h.x,y:exposedHoleY,rx:h.rx,ry:h.ry,rel:h.rel}));
+const sel = visibleHoles.find(h=>h.i===s.activeHole);
+if(sel){
+  ctx.save();
+  ctx.strokeStyle=canRotate()?'rgba(255,232,162,.98)':'rgba(180,188,196,.95)';
+  ctx.lineWidth=2.4; ctx.setLineDash([3,3]);
+  ctx.beginPath();ctx.ellipse(sel.x,exposedHoleY,sel.rx*1.85,sel.ry*1.85,0,0,TAU);ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle=canRotate()?'rgba(255,232,162,.95)':'rgba(180,188,196,.90)';
+  ctx.font='bold 11px Arial'; ctx.textAlign='center'; ctx.fillText('ACTIVE',sel.x,exposedHoleY-sel.ry*2.6);
+  ctx.restore();
+}
+// Horizontal drag guide for the exposed nut.
+side.nutTrack={x:cx-nutW*0.44,w:nutW*0.88,y:exposedHoleY};
+ctx.strokeStyle='rgba(255,232,162,.55)';ctx.lineWidth=2;ctx.setLineDash([6,5]);
+ctx.beginPath();ctx.moveTo(side.nutTrack.x,exposedHoleY+20);ctx.lineTo(side.nutTrack.x+side.nutTrack.w,exposedHoleY+20);ctx.stroke();ctx.setLineDash([]);
+ctx.fillStyle='rgba(255,232,162,.92)';ctx.font='11px Arial';ctx.textAlign='center';
+ctx.fillText('Exposed nut: drag left/right from its holes',cx,exposedHoleY+36);
+}
+
+// Gap and measurement annotations// Gap and measurement annotations
+if(hydraulicsVisible()){
+  ctx.strokeStyle=gap>0.01?'rgba(107,191,89,.95)':'rgba(229,107,111,.9)';
+  ctx.lineWidth=2;ctx.setLineDash(gap>0.01?[]:[4,4]);
+  ctx.beginPath();ctx.moveTo(cx-spacerW/2-24,nutBottom);ctx.lineTo(cx+spacerW/2+24,nutBottom);ctx.stroke();ctx.setLineDash([]);
+  if(gap>0.01)arrow(cx-spacerW/2-42,coverY,cx-spacerW/2-42,nutBottom,'rgba(107,191,89,.95)');
+  if(currentLift()>0.01)arrow(cx+spacerW/2+42,coverY,cx+spacerW/2+42,coverY-currentLift()*sc,'rgba(118,183,255,.95)');
+}
+
+ctx.fillStyle='#d8e0ea';ctx.font='12px Arial';ctx.textAlign='left';
+ctx.fillText('Visual clearance: '+(nutVisible()?gap.toFixed(2):'—')+' mm',side.x+18,coverY+42);
+ctx.fillText('Thread travel T: '+s.threadTravel.toFixed(2)+' mm',side.x+18,coverY+60);
+ctx.fillText('After pressure is relieved: free clearance = '+s.threadTravel.toFixed(2)+' mm',side.x+18,coverY+78);
+ctx.fillText('J-Cylinder: remove only after the lower end of its thread has passed beyond the stud end',side.x+18,coverY+96);ctx.fillText('Stud elongation: '+currentLift().toFixed(2)+' mm · Piston rise: '+visualPistonRise().toFixed(2)+' mm',side.x+18,coverY+114);ctx.fillText('After hydraulic-jack removal, remove the nut only after the lower end of its thread has passed beyond the stud end',side.x+18,coverY+132);
+ctx.fillText('V52 is retained as a rollback reference if required',side.x+18,coverY+150);
+}
+function drawGauge(){
+const r=250; // 500 px diameter
+const cx=W-r-28;
+const cy=r+28;
+const start=2*Math.PI/3;          // 120°
+const sweep=5*Math.PI/3;          // 300°
+const maxBar=2500;
+const val=clamp(s.pressure,0,maxBar);
+const ang=v=>start+(v/maxBar)*sweep;
+ctx.save();
+ctx.translate(cx,cy);
+// body
+ctx.fillStyle='#f4f4f1';
+ctx.beginPath(); ctx.arc(0,0,r,0,TAU); ctx.fill();
+ctx.strokeStyle='#111'; ctx.lineWidth=4; ctx.stroke();
+ctx.fillStyle='#faf8f3';
+ctx.beginPath(); ctx.arc(0,0,r-10,0,TAU); ctx.fill();
+ctx.strokeStyle='rgba(0,0,0,.18)'; ctx.lineWidth=2; ctx.stroke();
+// ticks every 100 bar
+for(let b=0;b<=maxBar;b+=100){
+  const a=ang(b), ca=Math.cos(a), sa=Math.sin(a);
+  let outer=r-12, inner=r-34;
+  if(b%500===0){ inner=r-52; ctx.lineWidth=3.2; }
+  else { ctx.lineWidth=2.0; }
+  ctx.strokeStyle='#000';
+  ctx.beginPath();
+  ctx.moveTo(inner*ca,inner*sa);
+  ctx.lineTo(outer*ca,outer*sa);
+  ctx.stroke();
+}
+// red marker at 2200 bar, radial length 20 px
+{
+  const a=ang(2200), ca=Math.cos(a), sa=Math.sin(a);
+  ctx.strokeStyle='#d11414'; ctx.lineWidth=5;
+  ctx.beginPath();
+  ctx.moveTo((r-32)*ca,(r-32)*sa);
+  ctx.lineTo((r-12)*ca,(r-12)*sa);
+  ctx.stroke();
+}
+// labels every 500 bar, half-size and inside the tick marks
+ctx.fillStyle='#111';
+ctx.font='bold 16px Arial';
+ctx.textAlign='center'; ctx.textBaseline='middle';
+for(let b=0;b<=maxBar;b+=500){
+  const a=ang(b), rr=r-70, x=rr*Math.cos(a), y=rr*Math.sin(a);
+  ctx.fillText(String(b),x,y);
+}
+// 'Bar' in the center of the lower 60° opening
+ctx.font='bold 28px Arial';
+ctx.fillText('Bar',0,r*0.53);
+// needle thin from center to periphery
+{
+  const a=ang(val), ca=Math.cos(a), sa=Math.sin(a);
+  ctx.strokeStyle='#111'; ctx.lineWidth=3; ctx.lineCap='round';
+  ctx.beginPath();
+  ctx.moveTo(-10*ca,-10*sa);
+  ctx.lineTo((r-24)*ca,(r-24)*sa);
+  ctx.stroke();
+}
+// hub
+ctx.fillStyle='#111';
+ctx.beginPath(); ctx.arc(0,0,8,0,TAU); ctx.fill();
+ctx.fillStyle='#ece7da';
+ctx.beginPath(); ctx.arc(0,0,3.5,0,TAU); ctx.fill();
+// pressure readout
+ctx.fillStyle='#111'; ctx.font='20px Arial';
+ctx.fillText(val.toFixed(0)+' bar',0,84); // digital pressure readout moved an additional 50 px downward (100 px total)
+ctx.restore();
+}
+function drawMagnifier(){
+  if(!s.magnifierEnabled) return;
+  const r=s.magnifierRadius,d=r*2,zoom=s.magnifierZoom;
+  const srcCss=d/zoom;
+  const x=clamp(s.magnifierX,0,W);
+  const y=clamp(s.magnifierY,0,H);
+  const sxCss=clamp(x-srcCss/2,0,Math.max(0,W-srcCss));
+  const syCss=clamp(y-srcCss/2,0,Math.max(0,H-srcCss));
+
+  ctx.save();
+  ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.clip();
+  ctx.fillStyle='#111820';ctx.fillRect(x-r,y-r,d,d);
+
+  // Clarity enhancement: re-render the simulator's vector drawing directly inside
+  // the magnifier instead of enlarging a raster copy of the main canvas. This keeps
+  // edges, threads, holes, text and gauge markings crisp at 10x without changing
+  // any simulator geometry, mechanics, hit-testing or the normal canvas image.
+  const sourceCx=sxCss+srcCss/2;
+  const sourceCy=syCss+srcCss/2;
+  ctx.translate(x,y);
+  ctx.scale(zoom,zoom);
+  ctx.translate(-sourceCx,-sourceCy);
+  drawSide();
+  drawGauge();
+  ctx.restore();
+
+  ctx.save();
+  ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.clip();
+
+  const pxPerMm=Math.max(1,side.scale*zoom);
+  const pxPerTenth=pxPerMm/10;
+  const maxTicks=Math.floor((r-18)/Math.max(pxPerTenth,0.0001));
+
+  ctx.strokeStyle='rgba(170,255,230,.88)';
+  ctx.fillStyle='rgba(170,255,230,.96)';
+  ctx.lineWidth=1;
+
+  for(let i=-maxTicks;i<=maxTicks;i++){
+    const off=i*pxPerTenth;
+    const ax=Math.abs(i);
+    if(ax%5!==0) continue; // show only 0.5 mm and 1.0 mm divisions
+    let tick=11;
+    if(ax%10===0) tick=16;
+
+    if(Math.abs(off)<=r-10){
+      ctx.beginPath();
+      ctx.moveTo(x+off,y-tick);
+      ctx.lineTo(x+off,y+tick);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(x-tick,y+off);
+      ctx.lineTo(x+tick,y+off);
+      ctx.stroke();
+    }
+  }
+
+  ctx.strokeStyle='rgba(230,255,250,.98)';
+  ctx.lineWidth=1.4;
+  ctx.beginPath();ctx.moveTo(x-r+10,y);ctx.lineTo(x+r-10,y);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(x,y-r+10);ctx.lineTo(x,y+r-10);ctx.stroke();
+
+  ctx.beginPath();
+  ctx.arc(x,y,3.2,0,TAU);
+  ctx.stroke();
+
+  const bar1 = Math.max(12, pxPerMm);
+  const bar05 = Math.max(8, pxPerMm/2);
+  const leftBoxX=x-r+10, leftBoxY=y-r+10, leftBoxW=86, leftBoxH=24;
+  const rightBoxW=104, rightBoxH=24, rightBoxX=x+r-rightBoxW-10, rightBoxY=y-r+10;
+
+  ctx.fillStyle='rgba(0,0,0,.58)';
+  roundRect(leftBoxX,leftBoxY,leftBoxW,leftBoxH,6);ctx.fill();
+  roundRect(rightBoxX,rightBoxY,rightBoxW,rightBoxH,6);ctx.fill();
+
+  ctx.strokeStyle='rgba(230,255,250,.98)';
+  ctx.lineWidth=1.2;
+  let by=leftBoxY+7;
+  let bx=leftBoxX+8;
+  ctx.beginPath();
+  ctx.moveTo(bx,by);ctx.lineTo(bx+bar1,by);
+  ctx.moveTo(bx,by-4);ctx.lineTo(bx,by+4);
+  ctx.moveTo(bx+bar1,by-4);ctx.lineTo(bx+bar1,by+4);
+  ctx.stroke();
+
+  by=rightBoxY+7;
+  bx=rightBoxX+8;
+  ctx.beginPath();
+  ctx.moveTo(bx,by);ctx.lineTo(bx+bar05,by);
+  ctx.moveTo(bx,by-4);ctx.lineTo(bx,by+4);
+  ctx.moveTo(bx+bar05,by-4);ctx.lineTo(bx+bar05,by+4);
+  ctx.stroke();
+
+  ctx.fillStyle='rgba(230,255,250,.98)';
+  ctx.font='bold 9px Arial';
+  ctx.textAlign='center';
+  ctx.textBaseline='middle';
+  ctx.fillText('1 mm @ 5×',leftBoxX+leftBoxW/2,leftBoxY+17);
+  ctx.fillText('0.5 mm @ 5×',rightBoxX+rightBoxW/2,rightBoxY+17);
+
+  ctx.restore();
+
+  ctx.save();
+  ctx.shadowColor='rgba(0,0,0,.65)';ctx.shadowBlur=10;ctx.shadowOffsetY=3;
+  ctx.strokeStyle='#e8f5ff';ctx.lineWidth=4;
+  ctx.beginPath();ctx.arc(x,y,r-2,0,TAU);ctx.stroke();
+  ctx.shadowColor='transparent';
+  ctx.strokeStyle='rgba(118,183,255,.95)';ctx.lineWidth=2;
+  ctx.beginPath();ctx.arc(x,y,r-6,0,TAU);ctx.stroke();
+  ctx.fillStyle='rgba(0,0,0,.72)';
+  roundRect(x-20,y+r-17,40,18,7);ctx.fill();
+  ctx.fillStyle='#eaf7ff';ctx.font='bold 11px Arial';ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText(zoom+'×',x,y+r-8);
+  ctx.restore();
+}
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle='#111820';ctx.fillRect(0,0,W,H);
+  drawSide();drawGauge();
+  magnifierBufferCtx.setTransform(1,0,0,1,0,0);
+  magnifierBufferCtx.clearRect(0,0,magnifierBuffer.width,magnifierBuffer.height);
+  magnifierBufferCtx.drawImage(canvas,0,0);
+  drawMagnifier();
+}
+function currentSequenceStep(){
+  const nutReq=nutFiveHoleTravel();
+  if(isTightenWorkflow()){
+    if(hydraulicsRemoved() && s.step7Completed && s.tightenCompleted) return 9;
+    if(nutRemoved()) return 1;
+    if(hydraulicsRemoved()) return 2;
+    if(!s.hosesConnected) return 3;
+    if(!s.pistonZero) return 4;
+    if(!s.tightenCompleted && !tighteningPressureCorrect()) return 5;
+    if(!s.tightenCompleted) return 6;
+    if(s.pressure>0.01) return 7;
+    if(!hydraulicsRemoved()) return 8;
+    return 9;
+  }
+  if(nutRemoved()) return 11;
+  if(hydraulicsRemoved() && s.threadTravel>=nutReq-0.05) return 10;
+  if(s.pressure===0 && !s.hosesConnected && hydraulicsVisible() && s.threadTravel>=nutReq-0.05) return 9;
+  if(s.pressure===0 && s.hosesConnected && hydraulicsVisible() && s.threadTravel>=nutReq-0.05) return 8;
+  if(s.pressure>0 && s.threadTravel>=nutReq-0.05) return 7;
+  if(nutReleaseReached() && s.threadTravel<nutReq-0.05) return 6;
+  if(backoffReady()) return 5;
+  if(s.pistonZero) return 4;
+  if(s.hosesConnected) return 3;
+  if(assemblySeated() && hydraulicsVisible()) return 2;
+  return 1;
+}
+const stepLabelsLoosen={
+  1:'Screw hydraulic jack fully onto stud',
+  2:'Connect high-pressure hoses',
+  3:'Bleed / Piston zero',
+  4:'Manually unscrew hydraulic jack — 6 holes (3/4 turn)',
+  5:'Increase oil pressure above 2250 bar',
+  6:'Unscrew nut with tommy bar — permitted range 5–7 holes',
+  7:'Hold to lower oil pressure to 0 bar',
+  8:'Disconnect high-pressure hoses',
+  9:'Automatically unscrew and remove hydraulic jack',
+  10:'Automatically unscrew and remove nut',
+  11:'Dismantling sequence completed'
+};
+const stepLabelsTighten={
+  1:'Place nut fully onto stud (free, not tightened)',
+  2:'Screw hydraulic jack fully onto stud',
+  3:'Connect high-pressure hoses',
+  4:'Bleed / Piston zero',
+  5:'Increase oil pressure to exactly 2200 bar',
+  6:'Manually tighten nut and check',
+  7:'Hold to lower oil pressure to 0 bar',
+  8:'Automatically unscrew and remove hydraulic jack',
+  9:'Mounting sequence completed'
+};
+function isTightenWorkflow(){return s.workflowMode==='tighten';}
+function currentStepLabels(){return isTightenWorkflow()?stepLabelsTighten:stepLabelsLoosen;}
+function currentFinalStep(){return isTightenWorkflow()?9:11;}
+function tighteningPressureCorrect(){return Math.abs(s.pressure-s.releasePressure)<=1;}
+function hydraulicPullTf(){
+  return Math.max(0,(s.pressure/s.releasePressure)*594);
+}
+function refreshStudTensionHold(){
+  const hydraulicTf=hydraulicPullTf();
+  if(isTightenWorkflow()){
+    if(s.tightenCompleted){
+      // The preload locked in by the tightened nut remains after hydraulic pressure is removed.
+      s.studTensionHoldTf=Math.max(Number(s.studTensionHoldTf)||0,hydraulicTf);
+    }else if(s.pressure<=0){
+      s.studTensionHoldTf=0;
+    }
+  }else if(zeroTensionState()){
+    s.studTensionHoldTf=0;
+  }else if(!s.nutReleasedUnderPressure){
+    // Dismantling begins with the stud already preloaded by the tightened nut.
+    s.studTensionHoldTf=594;
+  }
+}
+function studTensionDisplayTf(){
+  const hydraulicTf=hydraulicPullTf();
+  if(isTightenWorkflow()){
+    return s.tightenCompleted ? Math.max(hydraulicTf,Number(s.studTensionHoldTf)||0) : hydraulicTf;
+  }
+  if(s.nutReleasedUnderPressure || zeroTensionState()) return hydraulicTf;
+  return Math.max(594,hydraulicTf);
+}
+function update(){
+  refreshStudTensionHold();
+  let lift=currentLift(), fg=freeGap(), isFree=canRotate(), byNut=nutTensionPercent(), byHyd=hydraulicTensionPercent(), studTensionTf=studTensionDisplayTf(), carrier=tensionCarrier();
+  let botGap=bottomClearance(), topGap=topClearance(), allowT=canTighten(), allowL=canLoosen();
+
+  e.pressure.value=s.pressure;
+  e.pressureOut.textContent=s.pressure.toFixed(0)+' bar';
+  e.liftOut.textContent=lift.toFixed(2)+' mm';
+  e.nutTensionOut.textContent=byNut.toFixed(1).replace('.0','')+'%';
+  e.hydTensionOut.textContent=byHyd.toFixed(1).replace('.0','')+'%';
+  if(e.studTensionOut) e.studTensionOut.textContent=studTensionTf.toFixed(1).replace('.0','')+' tf';
+  e.modeOut.textContent=s.operation===1?'Loosening':'Tightening';
+  e.strokeOut.textContent=(s.strokeProgress*100).toFixed(0)+'° / 100°';
+  e.holeOut.textContent='#'+(s.activeHole+1)+' / 8';
+  e.strokeTravelOut.textContent=strokeTravel().toFixed(2)+' mm';
+  e.threadOut.textContent=s.threadTravel.toFixed(2)+' mm';
+  e.pressureGapOut.textContent=pressureGap().toFixed(2)+' mm';
+  e.freeGapOut.textContent=fg.toFixed(2)+' mm';
+  e.visualGapOut.textContent=visualGap().toFixed(2)+' mm';
+  e.bottomGapOut.textContent=botGap.toFixed(2)+' mm';
+  e.topGapOut.textContent=topGap.toFixed(2)+' mm';
+  e.motionOut.textContent=(allowT?'Tighten':'—')+' / '+(allowL?'Loosen':'—');
+
+  e.play.max=Math.max(0,fg).toFixed(2);
+  e.play.value=clamp(s.nutPlay,0,fg).toFixed(2);
+  e.playOut.textContent=clamp(s.nutPlay,0,fg).toFixed(2)+' mm';
+  e.cylModeOut.textContent=s.cylOperation===1?'Loosening':'Tightening';
+  e.cylStrokeOut.textContent=(s.cylStrokeProgress*100).toFixed(0)+'° / 100°';
+  e.cylHoleOut.textContent='#'+(s.cylActiveHole+1)+' / 8';
+  e.cylThreadOut.textContent=s.cylThreadTravel.toFixed(2)+' mm';
+  e.cylSpacerOut.textContent=spacerFollowDisplay().toFixed(2)+' mm';
+  e.pistonRiseOut.textContent=visualPistonRise().toFixed(2)+' mm';
+
+  const backReq=requiredBackoffTravel(), nutReq=nutFiveHoleTravel();
+  const seqStep=currentSequenceStep();
+  const failure=sequenceFailure();
+  const stepLabels=currentStepLabels();
+  const finalStep=currentFinalStep();
+  if(e.sequenceNo) e.sequenceNo.textContent=isTightenWorkflow()?'11':'10';
+  if(e.sequenceTitle) e.sequenceTitle.innerHTML=isTightenWorkflow()?'Cylinder Cover Tightening<br>Hydraulic Tools — Mounting':'Cylinder Cover Loosening<br>Hydraulic Tools — Dismantling';
+  if(e.sequenceLabel) e.sequenceLabel.textContent=isTightenWorkflow()?'Mounting sequence':'Dismantling sequence';
+  if(e.modeLoosenBtn) e.modeLoosenBtn.classList.toggle('active',!isTightenWorkflow());
+  if(e.modeTightenBtn) e.modeTightenBtn.classList.toggle('active',isTightenWorkflow());
+  if(e.scPlaceNut){e.scPlaceNut.style.display=isTightenWorkflow()?'':'none'; e.scPlaceNut.dataset.step='1';}
+  if(e.scBackoffHyd){e.scBackoffHyd.style.display=isTightenWorkflow()?'none':''; e.scBackoffHyd.dataset.step='4';}
+  if(e.scDisconnect){e.scDisconnect.style.display=isTightenWorkflow()?'none':''; e.scDisconnect.dataset.step='8';}
+  if(e.scUnscrewNut){e.scUnscrewNut.style.display=isTightenWorkflow()?'none':''; e.scUnscrewNut.dataset.step='10';}
+  if(e.scPlaceHyd) e.scPlaceHyd.dataset.step=isTightenWorkflow()?'2':'1';
+  if(e.scConnect) e.scConnect.dataset.step=isTightenWorkflow()?'3':'2';
+  if(e.scBleed) e.scBleed.dataset.step=isTightenWorkflow()?'4':'3';
+  if(e.scPumpStart) e.scPumpStart.dataset.step='5';
+  if(e.scLoosenNut5) e.scLoosenNut5.dataset.step='6';
+  if(e.scPumpStop) e.scPumpStop.dataset.step='7';
+  if(e.scUnscrewHyd) e.scUnscrewHyd.dataset.step=isTightenWorkflow()?'8':'9';
+  if(e.screenPanel) e.screenPanel.classList.toggle('noHelp',!s.help);
+  if(e.helpBtn){e.helpBtn.textContent='HELP: '+(s.help?'ON':'OFF');e.helpBtn.classList.toggle('on',s.help);}
+  if(e.magnifierToggleBtn){e.magnifierToggleBtn.textContent='MAGNIFIER: '+(s.magnifierEnabled?'ON':'OFF');e.magnifierToggleBtn.classList.toggle('on',s.magnifierEnabled);e.magnifierToggleBtn.classList.toggle('off',!s.magnifierEnabled);}
+  if(e.sequenceProgress){
+    if(!s.help) e.sequenceProgress.textContent='HELP OFF — no next-step guidance and no highlighting of completed targets.';
+    else if(failure) e.sequenceProgress.textContent=failure;
+    else e.sequenceProgress.textContent=seqStep===finalStep?(isTightenWorkflow()?'Mounting sequence completed':'Dismantling sequence completed'):'Current step: '+seqStep+' — '+stepLabels[seqStep];
+  }
+  document.querySelectorAll('.stepBtn').forEach(btn=>{
+    const n=Number(btn.dataset.step||0);
+    btn.classList.toggle('current',s.help && !failure && n===seqStep);
+    btn.classList.toggle('done',s.help && !failure && n<seqStep);
+  });
+  if(e.scPlaceNut) e.scPlaceNut.classList.toggle('active', s.help && !!s.anim && s.anim.type==='nutPlace');
+  if(e.scPlaceHyd) e.scPlaceHyd.classList.toggle('active', s.help && !!s.anim && s.anim.type==='hydPlace');
+  e.scConnect.classList.toggle('active', s.help && s.hosesConnected);
+  e.scBleed.classList.toggle('active', s.help && s.pistonZero);
+  if(e.scBackoffHyd) e.scBackoffHyd.classList.toggle('active', s.help && seqStep===4 && s.cylThreadTravel>0);
+  e.scPumpStart.classList.toggle('active', s.help && seqStep===5 && s.pressure>0);
+  if(e.scLoosenNut5) e.scLoosenNut5.classList.toggle('active', s.help && seqStep===6 && s.threadTravel>0);
+  e.scPumpStop.classList.toggle('active', s.help && ((seqStep===7 && s.pressure<s.workingPressure) || (isTightenWorkflow() && seqStep===5 && s.pressure>s.releasePressure+1)));
+  if(e.scDisconnect) e.scDisconnect.classList.toggle('active', s.help && !s.hosesConnected && seqStep>8);
+  e.scUnscrewHyd.classList.toggle('active', s.help && !!s.anim && s.anim.type==='hydUnscrew');
+  e.scUnscrewNut.classList.toggle('active', s.help && !!s.anim && s.anim.type==='nutUnscrew');
+  const gate=n=>s.help && (!failure && seqStep!==n);
+  if(e.scPlaceNut) e.scPlaceNut.disabled = isTightenWorkflow()?gate(1):true;
+  if(e.scPlaceHyd) e.scPlaceHyd.disabled = gate(isTightenWorkflow()?2:1);
+  e.scConnect.disabled = gate(isTightenWorkflow()?3:2);
+  e.scBleed.disabled = gate(isTightenWorkflow()?4:3);
+  if(e.scBackoffHyd) e.scBackoffHyd.disabled = isTightenWorkflow()?true:gate(4);
+  e.scPumpStart.disabled = gate(5);
+  if(e.scLoosenNut5) e.scLoosenNut5.disabled = gate(6);
+  e.scPumpStop.disabled = isTightenWorkflow() ? (s.help && !(seqStep===7 || (seqStep===5 && s.pressure>s.releasePressure+1))) : gate(7);
+  if(e.scDisconnect) e.scDisconnect.disabled = isTightenWorkflow()?true:gate(8);
+  e.scUnscrewHyd.disabled = gate(isTightenWorkflow()?8:9);
+  e.scUnscrewNut.disabled = isTightenWorkflow()?true:gate(10);
+  if(s.help){
+    if(isTightenWorkflow()){
+      if(e.scPlaceNut) e.scPlaceNut.textContent='1. AUTO: place nut fully onto stud (free)';
+      if(e.scPlaceHyd) e.scPlaceHyd.textContent='2. AUTO: screw hydraulic jack fully onto stud';
+      if(e.scConnect) e.scConnect.textContent='3. Connect high-pressure hoses';
+      if(e.scBleed) e.scBleed.textContent='4. Bleed / Piston zero';
+      if(s.pressure>s.releasePressure+1 && !s.tightenCompleted){
+        e.scPumpStart.textContent='5. Pressure above correct value — '+s.pressure.toFixed(0)+' bar · correct = 2200 bar';
+        e.scPumpStop.textContent='5. HOLD: lower oil pressure to 2200 bar — '+s.pressure.toFixed(0)+' bar';
+      }else{
+        e.scPumpStart.textContent='5. HOLD: increase oil pressure — '+s.pressure.toFixed(0)+' bar · correct = 2200 bar · max 2500 bar';
+        e.scPumpStop.textContent='7. HOLD: lower oil pressure — '+s.pressure.toFixed(0)+' bar · release to stop';
+      }
+      if(e.scLoosenNut5) e.scLoosenNut5.textContent='6. MANUAL: tighten nut / check — hydraulic clearance '+pressureGap().toFixed(2)+' mm';
+      if(e.scUnscrewHyd) e.scUnscrewHyd.textContent='8. Automatically unscrew and remove hydraulic jack';
+      if(e.trainingNote) e.trainingNote.textContent='HELP ON: place the nut, fit the hydraulic jack fully, connect hoses, bleed / zero, the pressure may be raised up to 2500 bar, but return to exactly 2200 bar before manually tightening the nut until the clearance becomes 0, lower pressure to 0 bar, then remove the hydraulic jack.';
+    }else{
+      if(e.scPlaceHyd) e.scPlaceHyd.textContent='1. Screw hydraulic jack fully onto stud';
+      if(e.scConnect) e.scConnect.textContent='2. Connect high-pressure hoses';
+      if(e.scBleed) e.scBleed.textContent='3. Bleed / Piston zero';
+      if(e.scBackoffHyd) e.scBackoffHyd.textContent='4. MANUAL: hydraulic jack — '+hydraulicBackoffHoleCount().toFixed(1).replace('.0','')+' holes · required 6 (3/4 turn)';
+      e.scPumpStart.textContent='5. HOLD: increase oil pressure — '+s.pressure.toFixed(0)+' bar · target >2250 bar';
+      if(e.scLoosenNut5) e.scLoosenNut5.textContent='6. MANUAL: nut — '+nutLoosenHoleCount().toFixed(1).replace('.0','')+' holes · correct range 5–7';
+      e.scPumpStop.textContent='7. HOLD: lower oil pressure — '+s.pressure.toFixed(0)+' bar · release to stop';
+      if(e.scUnscrewHyd) e.scUnscrewHyd.textContent='9. Automatically unscrew and remove hydraulic jack';
+      if(e.scUnscrewNut) e.scUnscrewNut.textContent='10. Automatically unscrew and remove nut';
+      if(e.trainingNote) e.trainingNote.textContent='HELP ON: unscrew the hydraulic jack 6 holes before pressurising; increase oil pressure above 2250 bar; unscrew the nut 5–7 holes; then relieve pressure to 0 bar and disconnect the high-pressure hoses.';
+    }
+  }else{
+    if(isTightenWorkflow()){
+      if(e.scPlaceNut) e.scPlaceNut.textContent='1. Place nut fully onto stud';
+      if(e.scPlaceHyd) e.scPlaceHyd.textContent='2. Screw hydraulic jack fully onto stud';
+      if(e.scConnect) e.scConnect.textContent='3. Connect high-pressure hoses';
+      if(e.scBleed) e.scBleed.textContent='4. Bleed / Piston zero';
+      e.scPumpStart.textContent='5. Increase oil pressure';
+      if(e.scLoosenNut5) e.scLoosenNut5.textContent='6. Manually tighten nut';
+      e.scPumpStop.textContent='7. Lower oil pressure';
+      if(e.scUnscrewHyd) e.scUnscrewHyd.textContent='8. Automatically unscrew and remove hydraulic jack';
+    }else{
+      if(e.scPlaceHyd) e.scPlaceHyd.textContent='1. Screw hydraulic jack fully onto stud';
+      if(e.scConnect) e.scConnect.textContent='2. Connect high-pressure hoses';
+      if(e.scBleed) e.scBleed.textContent='3. Bleed / Piston zero';
+      if(e.scBackoffHyd) e.scBackoffHyd.textContent='4. Manually screw / unscrew hydraulic jack';
+      e.scPumpStart.textContent='5. Increase oil pressure';
+      if(e.scLoosenNut5) e.scLoosenNut5.textContent='6. Manually tighten / loosen nut';
+      e.scPumpStop.textContent='7. Lower oil pressure';
+      if(e.scUnscrewHyd) e.scUnscrewHyd.textContent='9. Automatically unscrew and remove hydraulic jack';
+      if(e.scUnscrewNut) e.scUnscrewNut.textContent='10. Automatically unscrew and remove nut';
+    }
+    if(e.trainingNote) e.trainingNote.textContent='Team operation mode: follow only the Team Leader command. The common pressure and the other seven hydraulic-jack operators are synchronized. Confirm each completed action with the hand-up button. Report any leak or abnormal condition immediately; use EMERGENCY STOP for an immediate halt.';
+  }
+  e.hosesOut.textContent=s.hosesConnected?'Connected':'Disconnected';
+  e.pistonZeroOut.textContent=s.pistonZero?'Yes':'No';
+  e.backoffOut.textContent=s.cylThreadTravel.toFixed(2)+' / '+backReq.toFixed(2)+' mm';
+  e.readyPressureOut.textContent=canBuildPressure()?'Yes':'No';
+  e.nut5Out.textContent=s.threadTravel.toFixed(2)+' / '+nutReq.toFixed(2)+' mm';
+  e.hydRemoveOut.textContent=hydraulicsReadyToRemove()? (hydraulicsRemoved()?'Removed after thread cleared stud end':'Ready') : 'Not ready';
+  e.nutRemoveOut.textContent=nutReadyToRemove()? (nutRemoved()?'Removed after thread cleared stud end':'Ready') : 'Not ready';
+  e.pitch.value=s.pitch;
+  e.pitchOut.textContent=s.pitch.toFixed(1).replace('.0','')+' mm';
+
+  e.playStatus.className='status '+((zeroPressureGapFree() || latchedFreeAtZeroPressure())?'free':(carrier==='hydraulic'?'pressure':'locked'));
+  if(isTightenWorkflow() && s.pressure===0 && !s.tightenCompleted && nutVisible()){
+    e.playStatus.textContent='The nut is hand-fitted and FREE, with no preload. It may rotate within its mechanical limits; tightening stops at the cylinder-cover contact face.';
+  }else if(zeroPressureGapFree()){
+    e.playStatus.textContent='At 0 bar, a clearance of '+fg.toFixed(2)+' mm is available. Therefore, load by Nut = 0% and load by Hydraulic = 0%. The nut is free.';
+  }else if(latchedFreeAtZeroPressure() && fg<=1e-6){
+    e.playStatus.textContent='The nut became free at 0 bar with clearance and remains free even though the present nut-to-cover clearance is 0.';
+  }else if(latchedFreeAtZeroPressure() && fg>1e-6){
+    e.playStatus.textContent='The nut is latched free at 0 bar. Available free axial travel: '+fg.toFixed(2)+' mm.';
+  }else{
+    e.playStatus.textContent='No free nut movement is available. Unless a zero-pressure condition with clearance has previously occurred, the stud load remains carried by the nut.';
+  }
+
+  e.cylStatus.className='status '+(cylCanRotate()?'free':'locked');
+  if(cylCanRotate()){
+    e.cylStatus.textContent='0 bar: the H/J assembly may be screwed or unscrewed on the stud. At pressure above 0 bar, the J-Cylinder and K-Support ring bear against the cylinder-cover contact face, while the H-Piston rises inside the cylinder. The K-Support ring does not rotate.';
+  }else{
+    e.cylStatus.textContent='Pressure above 0 bar: screwing or unscrewing the H/J assembly is locked. The J-Cylinder and K-Support ring are seated against the cylinder-cover contact face, and piston rise is proportional to pressure.';
+  }
+
+
+  e.scenarioStatus.className='status '+(s.pressureBlocked?'locked':(nutRemoved()?'free':(canBuildPressure()?'free':'pressure')));
+  if(isTightenWorkflow()){
+    if(hydraulicsRemoved() && s.step7Completed && s.tightenCompleted && !nutRemoved()) e.scenarioStatus.textContent='Final condition: the nut is tightened and the hydraulic jack has been removed. The mounting sequence is finished.';
+    else if(s.pressureBlocked){ const missing=pressureMissingItems(); e.scenarioStatus.textContent='PRESSURE BLOCKED: missing: '+(missing.length?missing.join(', '):'no prerequisite')+'. When all prerequisites are satisfied, use “Increase oil pressure”.'; }
+    else if(nutRemoved()) e.scenarioStatus.textContent='Step 1: Press “Place nut fully onto stud”. The nut is placed on the stud in the free, not yet tightened condition.';
+    else if(hydraulicsRemoved()) e.scenarioStatus.textContent='Step 2: Press “Screw hydraulic jack fully onto stud”. No 6-hole hydraulic-jack back-off is required in tightening mode.';
+    else if(!s.hosesConnected) e.scenarioStatus.textContent='Step 3: Connect the hydraulic jack and high-pressure pump by means of the high-pressure hoses.';
+    else if(!s.pistonZero) e.scenarioStatus.textContent='Step 4: Bleed the hydraulic system and establish piston zero with the jack fully screwed on and the high-pressure hoses connected.';
+    else if(!s.tightenCompleted && s.pressure<s.releasePressure-1) e.scenarioStatus.textContent='Step 5: Hold “Increase oil pressure”. The trainee may raise the pressure up to 2500 bar, but the correct tightening pressure is exactly 2200 bar.';
+    else if(!s.tightenCompleted && s.pressure>s.releasePressure+1) e.scenarioStatus.textContent='Step 5 — INCORRECT PRESSURE: the pressure is above 2200 bar. Hold “Lower oil pressure” until the indication returns to exactly 2200 bar.';
+    else if(!s.tightenCompleted) e.scenarioStatus.textContent='Step 6: Correct pressure = 2200 bar. Stud elongation has created a 1.50 mm clearance below the nut. Manually select the highlighted nut hole and drag left in the tightening direction until the 1.50 mm clearance becomes 0, then check the final tightened position.';
+    else if(s.pressure>0) e.scenarioStatus.textContent='Step 7: Hold “Lower oil pressure”. The oil pressure decreases only while the button is held. Release the button to stop the pressure reduction at the present value.';
+    else if(!hydraulicsRemoved()) e.scenarioStatus.textContent='Step 8: Press “Automatically unscrew and remove hydraulic jack” once. The hydraulic jack will be removed automatically.';
+    else e.scenarioStatus.textContent='Final condition: the nut is tightened and the hydraulic jack has been removed.';
+  }else if(nutRemoved()){
+    e.scenarioStatus.textContent='Final condition: the nut is removed. The complete dismantling sequence is finished.';
+  }else if(s.pressureBlocked){
+    const missing=pressureMissingItems();
+    e.scenarioStatus.textContent='PRESSURE BLOCKED: missing: '+(missing.length?missing.join(', '):'no prerequisite')+'. When all prerequisites are satisfied, use “Increase oil pressure”.';
+  }else if(canBuildPressure() && s.pressure===0 && s.threadTravel < nutReq-0.05){
+    e.scenarioStatus.textContent='READY FOR PRESSURE: high-pressure hoses connected, piston zero established, and hydraulic jack backed off 3/4 turn. Hold “Increase oil pressure” until the pressure exceeds 2250 bar.';
+  }else if(!assemblySeated()){
+    e.scenarioStatus.textContent='Step 1: Screw the hydraulic jack fully onto the stud until the J-Cylinder bears firmly against the K-Support ring. Target H/J travel = 0.00 mm.';
+  }else if(!s.hosesConnected){
+    e.scenarioStatus.textContent='Step 2: Connect the hydraulic jack and high-pressure pump by means of the high-pressure hoses.';
+  }else if(!s.pistonZero){
+    e.scenarioStatus.textContent='Step 3: Bleed the hydraulic system and establish piston zero with the jack fully screwed on and the high-pressure hoses connected.';
+  }else if(!backoffReady()){
+    e.scenarioStatus.textContent='Step 4: Manually select a J-Cylinder hole and drag. Reposition the tommy bar as required until 6/6 holes — 3/4 turn — '+backReq.toFixed(2)+' mm.';
+  }else if(s.pressure > 0 && s.pressure < s.releasePressure){
+    e.scenarioStatus.textContent='Step 5: Hold “Increase oil pressure”. Pressure increases linearly only while the button is held and stops when released. Target: above 2250 bar.';
+  }else if(s.pressure < s.releasePressure){
+    e.scenarioStatus.textContent='Step 5: Hold “Increase oil pressure” until the pressure exceeds 2250 bar.';
+  }else if(s.threadTravel < nutReq-0.05){
+    e.scenarioStatus.textContent='Step 6: Manually select a nut hole and drag. Reposition the tommy bar until 5/5 holes — 5/8 turn — '+nutReq.toFixed(2)+' mm.';
+  }else if(s.pressure>0){
+    e.scenarioStatus.textContent='Step 7: Hold “Lower oil pressure”. The oil pressure decreases only while the button is held. Release the button to stop the pressure reduction at the present value.';
+  }else if(s.hosesConnected){
+    e.scenarioStatus.textContent='Step 8: Pressure is 0 bar and Step 7 is complete. The nut is FREE unless a mechanical contact or jam condition exists. Disconnect the high-pressure hoses.';
+  }else if(!hydraulicsRemoved()){
+    e.scenarioStatus.textContent='Step 9: Press “Automatically unscrew and remove hydraulic jack” once. Complete removal is performed automatically only after the high-pressure hoses have been disconnected.';
+  }else if(!nutRemoved()){
+    e.scenarioStatus.textContent='Step 10: Press “Automatically unscrew and remove nut” once. Complete removal is performed automatically.';
+  }else{
+    e.scenarioStatus.textContent='Final condition: the hydraulic jack is removed first and the nut second, only after the lower end of each component thread has passed beyond the stud end. The stud and cylinder-cover contact face remain.';
+  }
+
+  e.releaseStatus.className='status '+(isFree?'free':(s.pressure>=s.liftStart?'pressure':'locked'));
+  if(hydraulicReleased()){
+    e.releaseStatus.textContent='FREE: load by Hydraulic = 100%, load by Nut = 0%. Permitted direction: '+(allowT?'tightening ':'')+(allowL?'loosening':'')+'.';
+  }else if(zeroPressureGapFree()){
+    e.releaseStatus.textContent='FREE: 0 bar with existing clearance. Tightening is permitted only when nut-to-cover clearance exists; loosening is permitted only when nut-to-support-ring-top clearance exists.';
+  }else if(latchedFreeAtZeroPressure()){
+    e.releaseStatus.textContent=(s.step7Completed?'FREE: Step 7 completed at 0 bar. The nut remains free unless a mechanical contact or jam condition exists. ':'FREE: latched from a previous 0-bar condition with clearance. ')+ 'Permitted now: '+(allowT?'tightening ':'')+(allowL?'loosening':'')+'.';
+  }else if(s.pressure>=s.liftStart){
+    e.releaseStatus.textContent='LOAD TRANSFER: by Nut ≈ '+byNut.toFixed(1).replace('.0','')+'%, by Hydraulic ≈ '+byHyd.toFixed(1).replace('.0','')+'%. Pressure may rise to 2250 bar, but the nut is not released unless pressure exceeds 2250 bar.';
+  }else{
+    e.releaseStatus.textContent='LOCKED: load by Nut = 100%, load by Hydraulic = 0%. The nut is not free.';
+  }
+
+  e.topRead.textContent=`${isTightenWorkflow()?'Tightening':'Loosening'} · Pressure ${s.pressure.toFixed(0)} bar · Nut ${nutVisible()?(isFree?'FREE':'LOCKED'):'REMOVED'} · H/J ${hydraulicsVisible()?(cylCanRotate()?'0bar-SCREWABLE':'PRESSURIZED'):'NOT INSTALLED'} · SupportRingFollow ${spacerFollowDisplay().toFixed(2)} mm · PistonRise ${visualPistonRise().toFixed(2)} mm · By Nut ${byNut.toFixed(1).replace('.0','')}% · By Hydraulic ${byHyd.toFixed(1).replace('.0','')}%`; 
+  [e.strokeUp,e.strokeDown,e.reindex].forEach(b=>{if(b) b.disabled=true;});
+  if(s.commandMode && typeof updateGangPanel==='function') updateGangPanel();
+}
+
+// ---------------- V118 GANG-LEADER / 8-JACK COMMAND MODE ----------------
+const ge={
+  panel:$('gangPanel'),title:$('gangTitle'),pressure:$('gangPressure'),command:$('leaderCommand'),grid:$('gangGrid'),
+  hyd:$('gangHydBtn'),hose:$('gangHoseBtn'),nut:$('gangNutBtn'),confirm:$('gangConfirmBtn'),message:$('gangMessage'),
+  reportProblem:$('gangReportProblemBtn'),emergencyStop:$('gangEmergencyStopBtn'),
+  loosenWorkflow:$('gangLoosenWorkflowBtn'),tightenWorkflow:$('gangTightenWorkflowBtn'),
+  voiceToggle:$('teamVoiceToggleBtn'),voiceRepeat:$('teamVoiceRepeatBtn'),
+  viewDown:$('viewScaleDownBtn'),viewUp:$('viewScaleUpBtn'),viewScale:$('viewScaleOut')
+};
+const gang={
+  phase:'place_hyd',confirmed:Array(8).fill(false),status:Array(8).fill('WAITING'),timers:[],
+  nutTested:false,lastNutFree:null,testDrag:false,loosenBaseline:0,recoveryCount:0,
+  pressureToken:0,message:'Waiting for the operator at Hydraulic Jack No. 1.',messageClass:'',
+  actionSeen:false,
+  releasePressures:Array(8).fill(2200),
+  releaseSignalScheduled:Array(8).fill(false),
+  voiceEnabled:true,lastSpokenPhase:null,currentUtterance:null
+};
+const DISPLAY_SCALE_MIN=0.70, DISPLAY_SCALE_MAX=1.30, DISPLAY_SCALE_STEP=0.05;
+function applyDisplayScale(){
+  s.displayScale=clamp(Number(s.displayScale)||1,DISPLAY_SCALE_MIN,DISPLAY_SCALE_MAX);
+  const viewport=document.querySelector('.canvasWrap');
+  // Scale the complete simulator view (drawing + Team Leader panel + safety controls)
+  // so the operator can adapt it to the device being used.
+  canvas.style.transform='none';
+  if(viewport){
+    viewport.style.transformOrigin='top left';
+    viewport.style.transform='scale('+s.displayScale.toFixed(2)+')';
+  }
+  if(ge.viewScale) ge.viewScale.textContent=Math.round(s.displayScale*100)+'%';
+  if(ge.viewDown) ge.viewDown.disabled=s.displayScale<=DISPLAY_SCALE_MIN+1e-9;
+  if(ge.viewUp) ge.viewUp.disabled=s.displayScale>=DISPLAY_SCALE_MAX-1e-9;
+}
+function changeDisplayScale(direction){
+  const next=Math.round((s.displayScale+direction*DISPLAY_SCALE_STEP)*100)/100;
+  s.displayScale=clamp(next,DISPLAY_SCALE_MIN,DISPLAY_SCALE_MAX);
+  applyDisplayScale();
+}
+
+function gangGenerateReleasePressures(){
+  // Fixed deviation set around the nominal 2200 bar, shuffled for every new run.
+  // The individual values are deliberately hidden from the trainee.
+  const values=[2120,2150,2180,2200,2220,2250,2280,2310];
+  for(let i=values.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [values[i],values[j]]=[values[j],values[i]];
+  }
+  gang.releasePressures=values;
+  gang.releaseSignalScheduled=Array(8).fill(false);
+}
+
+function teamVoiceSupported(){
+  return typeof window!=='undefined' && 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+}
+function teamVoiceCommandText(phase=gang.phase){
+  const d=gangPhaseData[phase]||gangPhaseData.failure;
+  // The spoken voice represents the Team Leader himself, so references to
+  // "the Team Leader" are converted to first-person wording for natural commands.
+  let spoken=d.cmd
+    .replace(/\bThe Team Leader is\b/g,'I am')
+    .replace(/\bThe Team Leader will\b/g,'I will')
+    .replace(/\bthe Team Leader\b/g,'me');
+  return 'Command '+d.no+'. '+d.title+'. '+spoken;
+}
+function teamVoiceChooseMaleVoice(voices){
+  const english=(voices||[]).filter(v=>/^en(?:[-_]|$)/i.test(v.lang||''));
+  const male=/(?:\bmale\b|george|ryan|daniel|david|mark|james|guy|brian|arthur|thomas|christopher|eric|andrew|roger|matthew|liam|oliver|john|paul|richard)/i;
+  const female=/(?:\bfemale\b|zira|hazel|susan|heera|samantha|victoria|karen|moira|tessa|ava|allison|serena|kate|aria|jenny|sonia)/i;
+  return english.find(v=>/^en-GB$/i.test(v.lang||'') && male.test(v.name||''))
+      || english.find(v=>male.test(v.name||''))
+      || english.find(v=>/^en-GB$/i.test(v.lang||'') && !female.test(v.name||''))
+      || english.find(v=>!female.test(v.name||''))
+      || english.find(v=>/^en-GB$/i.test(v.lang||''))
+      || english[0]
+      || null;
+}
+function teamVoiceUpdateControls(){
+  if(!ge.voiceToggle || !ge.voiceRepeat) return;
+  const supported=teamVoiceSupported();
+  ge.voiceToggle.disabled=!supported;
+  ge.voiceRepeat.disabled=!supported || !gang.voiceEnabled;
+  ge.voiceToggle.textContent=supported ? ('TEAM LEADER VOICE: '+(gang.voiceEnabled?'ON':'OFF')) : 'TEAM LEADER VOICE: UNSUPPORTED';
+  ge.voiceToggle.classList.toggle('on',supported&&gang.voiceEnabled);
+  ge.voiceToggle.classList.toggle('off',!supported||!gang.voiceEnabled);
+}
+function teamVoiceStop(){
+  if(teamVoiceSupported()) window.speechSynthesis.cancel();
+  gang.currentUtterance=null;
+}
+function teamVoiceSpeakPhase(phase=gang.phase,force=false){
+  if(!gang.voiceEnabled || !teamVoiceSupported()) { teamVoiceUpdateControls(); return; }
+  if(!force && gang.lastSpokenPhase===phase) return;
+  teamVoiceStop();
+  const utterance=new SpeechSynthesisUtterance(teamVoiceCommandText(phase));
+  utterance.lang='en-GB';
+  // Deliberately slower, lower-pitched delivery to sound like a calm male Team Leader.
+  utterance.rate=0.84;
+  utterance.pitch=0.88;
+  utterance.volume=1.0;
+  const voices=window.speechSynthesis.getVoices();
+  const preferred=teamVoiceChooseMaleVoice(voices);
+  if(preferred){
+    utterance.voice=preferred;
+    utterance.lang=preferred.lang || 'en-GB';
+  }
+  utterance.onend=()=>{ if(gang.currentUtterance===utterance) gang.currentUtterance=null; };
+  utterance.onerror=()=>{ if(gang.currentUtterance===utterance) gang.currentUtterance=null; };
+  gang.currentUtterance=utterance;
+  gang.lastSpokenPhase=phase;
+  window.speechSynthesis.speak(utterance);
+  teamVoiceUpdateControls();
+}
+function teamVoiceToggle(){
+  gang.voiceEnabled=!gang.voiceEnabled;
+  if(!gang.voiceEnabled) teamVoiceStop();
+  else { gang.lastSpokenPhase=null; teamVoiceSpeakPhase(gang.phase,true); }
+  teamVoiceUpdateControls();
+}
+function teamVoiceRepeat(){
+  if(!gang.voiceEnabled || !teamVoiceSupported()) return;
+  teamVoiceSpeakPhase(gang.phase,true);
+}
+const gangPhaseData={
+  // Existing UNSCREWING / dismantling procedure — unchanged.
+  place_hyd:{no:'1',title:'PLACE HYDRAULIC JACK',cmd:'Place the hydraulic jack on the stud and screw it down until it bears on the cylinder cover.'},
+  connect_bleed:{no:'2',title:'CONNECT HOSES / BLEED',cmd:'Connect the hydraulic hoses and bleed the system. Establish piston zero.'},
+  backoff_hyd:{no:'3',title:'BACK OFF 3/4 TURN · PRESSURE WARNING',cmd:'Unscrew the hydraulic jack exactly 3/4 turn — 6 tommy-bar holes. Warning: after your hand-up confirmation, I will start increasing the common hydraulic pressure. All operators must watch the hydraulic jacks, hoses and connections carefully and report any oil leak or abnormal condition immediately.'},
+  pressure_release:{no:'4',title:'CHECK NUT RELEASE',cmd:'I am now increasing the common pressure. Continue watching the hydraulic jacks, hoses and connections for leaks or abnormal conditions. The eight nuts may release at slightly different pressures. Keep trying your nut with the tommy bar and confirm only after you detect free movement. Pressure will continue rising until all eight operators have confirmed.'},
+  loosen_nut:{no:'5',title:'UNSCREW NUT',cmd:'Unscrew the nut 5 tommy-bar holes. Confirm completion and wait for the other seven operators.'},
+  pressure_lower:{no:'6',title:'CHECK WHILE PRESSURE FALLS',cmd:'The Team Leader is lowering the common pressure. Repeatedly move the nut with the tommy bar throughout the pressure reduction. If it tightens, press NUT HAS TIGHTENED — HAND UP immediately.'},
+  signal_tight:{no:'6A',title:'REPORT TIGHT NUT',cmd:'The nut has tightened during pressure reduction. Try it with the tommy bar and signal the Team Leader immediately.'},
+  repressurize:{no:'6B',title:'CHECK RELEASE AGAIN',cmd:'The Team Leader is increasing pressure again. Keep testing the nut with the tommy bar and confirm only after it moves freely. Pressure continues rising until all required operator confirmations have been received.'},
+  loosen_more:{no:'6C',title:'UNSCREW FURTHER',cmd:'Unscrew this nut further, then confirm. The Team Leader will lower pressure again after your signal.'},
+  zero_check:{no:'6D',title:'FINAL FREE CHECK',cmd:'Pressure is 0 bar. Move the nut with the tommy bar and confirm that it remained free.'},
+  remove_hose:{no:'6E',title:'REMOVE HYDRAULIC HOSE',cmd:'Pressure is 0 bar and the nut remains mechanically free. It may still be checked with the tommy bar. Remove the hydraulic hose, then confirm.'},
+  remove_hyd:{no:'7',title:'REMOVE HYDRAULIC JACK',cmd:'Remove the hydraulic jack. Confirm after it has cleared the stud.'},
+  remove_nut:{no:'8',title:'REMOVE NUT',cmd:'Remove the nut. Confirm after it has cleared the stud.'},
+  complete:{no:'✓',title:'SEQUENCE COMPLETE',cmd:'All eight operators have completed the dismantling sequence.'},
+
+  // New SCREWING / mounting procedure, using the existing tightening mechanics.
+  tight_place_nut:{no:'1',title:'PLACE NUT',cmd:'Place the nut on the stud and run it fully down to the cylinder-cover contact face. It is hand-fitted and carries no hydraulic preload yet.'},
+  tight_place_hyd:{no:'2',title:'PLACE HYDRAULIC JACK',cmd:'Place the hydraulic jack on the stud and screw it fully down until it bears on the cylinder cover.'},
+  tight_connect_bleed:{no:'3',title:'CONNECT HOSES / BLEED · PRESSURE WARNING',cmd:'Connect the hydraulic hoses, bleed the system and establish piston zero. Warning: after your hand-up confirmation, I will start increasing the common hydraulic pressure. All operators must watch the hydraulic jacks, hoses and connections carefully and report any oil leak or abnormal condition immediately.'},
+  tight_pressure:{no:'4',title:'INCREASE TO 2200 BAR',cmd:'I am now increasing the common pressure to exactly 2200 bar, creating the 1.50 mm tightening clearance. Continue watching all hydraulic jacks, hoses and connections and report any leak or abnormal condition immediately.'},
+  tighten_nut:{no:'5',title:'TIGHTEN NUT',cmd:'Use the tommy bar to tighten the nut until the full 1.50 mm hydraulic clearance is taken up. Then confirm completion.'},
+  tight_pressure_lower:{no:'6',title:'LOWER PRESSURE TO 0 BAR',cmd:'The Team Leader is lowering the common pressure to 0 bar. The tightened nut takes over the stud load.'},
+  tight_remove_hose:{no:'7',title:'DISCONNECT HYDRAULIC HOSES',cmd:'Disconnect the hydraulic hoses from the hydraulic jack. Confirm after the hoses are safely disconnected.'},
+  tight_remove_hyd:{no:'8',title:'REMOVE HYDRAULIC JACK',cmd:'Remove the hydraulic jack. Confirm after it has cleared the stud.'},
+  tight_complete:{no:'✓',title:'SEQUENCE COMPLETE',cmd:'All eight operators have completed the mounting / screwing sequence.'},
+  problem_hold:{no:'!',title:'PROBLEM / LEAK REPORTED',cmd:'Problem reported. Pressure change and all commanded movement have been stopped. Hold position. Do not continue the procedure until the hydraulic system and the reported condition have been checked. Restart the procedure only when it is safe to do so.'},
+  emergency_stop:{no:'!',title:'EMERGENCY STOP',cmd:'Emergency stop activated. Stop all operations immediately. Pressure change and all commanded movement are stopped. Hold position and do not continue until the condition has been investigated and the procedure is restarted.'},
+  failure:{no:'!',title:'MECHANICAL FAILURE',cmd:'The sequence cannot continue because a mechanical interlock or jam has occurred.'}
+};
+function gangClearTimers(){gang.timers.forEach(clearTimeout);gang.timers=[];gang.pressureToken++;}
+function gangSetMessage(msg,cls=''){gang.message=msg;gang.messageClass=cls;updateGangPanel();}
+function gangSafetyStop(kind){
+  const emergency=kind==='emergency';
+  gangClearTimers();
+  cancelAnim();
+  teamVoiceStop();
+  gang.phase=emergency?'emergency_stop':'problem_hold';
+  gang.confirmed=Array(8).fill(false);
+  gang.status=Array(8).fill('HOLD');
+  gang.status[0]='ALERT';
+  gang.nutTested=false;
+  gang.lastNutFree=null;
+  gang.actionSeen=false;
+  gang.testDrag=false;
+  gang.messageClass='error';
+  gang.message=emergency
+    ? 'EMERGENCY STOP activated at '+s.pressure.toFixed(0)+' bar. All automatic pressure change and commanded movement are stopped. Hold position and restart the procedure only after the condition has been investigated.'
+    : 'Problem / leak reported at '+s.pressure.toFixed(0)+' bar. Pressure change and commanded movement are stopped. Hold position, inspect the hydraulic system and restart the procedure only when safe.';
+  gang.lastSpokenPhase=null;
+  updateGangPanel();
+  setTimeout(()=>teamVoiceSpeakPhase(gang.phase,true),30);
+}
+function gangSetPhase(phase){
+  gangClearTimers();gang.phase=phase;gang.confirmed=Array(8).fill(false);gang.status=Array(8).fill('WAITING');
+  gang.nutTested=false;gang.lastNutFree=null;gang.actionSeen=false;gang.testDrag=false;
+  if(phase==='pressure_release' || phase==='repressurize') gang.releaseSignalScheduled=Array(8).fill(false);
+  if(phase==='loosen_more') gang.loosenBaseline=s.threadTravel;
+  gang.status[0]='WORKING';
+  if(phase==='complete'){gang.status=Array(8).fill('CONFIRMED');gangSetMessage('Dismantling completed by all eight hydraulic-jack operators.','success');setTimeout(()=>teamVoiceSpeakPhase(phase),30);return;}
+  if(phase==='tight_complete'){gang.status=Array(8).fill('CONFIRMED');gangSetMessage('Mounting / screwing completed by all eight hydraulic-jack operators.','success');setTimeout(()=>teamVoiceSpeakPhase(phase),30);return;}
+  if(phase==='failure'){gang.status[0]='ALERT';for(let i=1;i<8;i++)gang.status[i]='HOLD';gangSetMessage(sequenceFailure()||'Mechanical failure.','error');setTimeout(()=>teamVoiceSpeakPhase(phase),30);return;}
+  gangSetMessage('Command issued. Perform only the commanded action, then press CONFIRM — HAND UP.');
+  gangScheduleVirtualOperators();
+  if(phase==='pressure_release') gangStartPressure(1,'release');
+  if(phase==='pressure_lower') gangStartPressure(-1,'lower');
+  if(phase==='repressurize') gangStartPressure(1,'repressurize');
+  if(phase==='tight_pressure') gangStartPressure(1,'tighten');
+  if(phase==='tight_pressure_lower') gangStartPressure(-1,'tightenLower');
+  setTimeout(()=>teamVoiceSpeakPhase(phase),30);
+}
+function gangScheduleVirtualOperators(){
+  const noAuto=['pressure_release','pressure_lower','signal_tight','repressurize','loosen_more','zero_check','tight_pressure','tight_pressure_lower','failure','problem_hold','emergency_stop','complete','tight_complete'];
+  if(noAuto.includes(gang.phase)){
+    for(let i=1;i<8;i++) gang.status[i]=(gang.phase==='signal_tight'||gang.phase==='loosen_more')?'READY':'WORKING';
+    return;
+  }
+  for(let i=1;i<8;i++){
+    gang.status[i]='WORKING';
+    const t=setTimeout(()=>{gang.confirmed[i]=true;gang.status[i]='CONFIRMED';updateGangPanel();gangTryAdvance();},900+i*210);
+    gang.timers.push(t);
+  }
+}
+function gangAllowsCylinderMotion(){return gang.phase==='backoff_hyd';}
+function gangNutTestMode(){return ['pressure_release','pressure_lower','signal_tight','repressurize','zero_check','remove_hose'].includes(gang.phase);}
+function gangAllowsNutMotion(){
+  if(gangNutTestMode()) return true;
+  if(gang.phase==='loosen_nut' || gang.phase==='loosen_more' || gang.phase==='tighten_nut') return canRotate();
+  return false;
+}
+function gangRegisterNutTest(isFree){
+  gang.nutTested=true;gang.lastNutFree=!!isFree;gang.actionSeen=true;
+  gang.status[0]=isFree?'FREE':'TIGHT';
+  if(gang.phase==='pressure_release' || gang.phase==='repressurize'){
+    if(isFree && nutReleaseReached()){
+      gangSetMessage('Nut movement detected: FREE at '+s.pressure.toFixed(0)+' bar. Press NUT MOVES FREELY — HAND UP. The common pressure will continue rising until all eight operators have confirmed.','success');
+    }else{
+      gangSetMessage('Nut movement test: still TIGHT at '+s.pressure.toFixed(0)+' bar. Do not confirm yet. Continue trying it with the tommy bar while the common pressure rises.','error');
+    }
+    return;
+  }
+  if(gang.phase==='pressure_lower'){
+    gangSetMessage(
+      isFree
+        ? 'Nut movement detected: FREE at '+s.pressure.toFixed(0)+' bar. Continue checking it with the tommy bar while pressure falls.'
+        : 'Nut movement blocked: TIGHT at '+s.pressure.toFixed(0)+' bar. Press NUT HAS TIGHTENED — HAND UP immediately.',
+      isFree?'success':'error'
+    );
+    return;
+  }
+  if(gang.phase==='remove_hose'){
+    gang.status[0]='WORKING';
+    gangSetMessage(
+      isFree
+        ? 'The nut remains FREE at 0 bar and moves with the tommy bar. Remove the hydraulic hose, then press CONFIRM — HAND UP.'
+        : 'The nut does not move at 0 bar. Do not remove the hydraulic hose; report the mechanical condition.',
+      isFree?'success':'error'
+    );
+    return;
+  }
+  gangSetMessage(isFree?'Nut movement detected: FREE. Press the confirmation button when instructed.':'Nut movement blocked: TIGHT. Signal the Team Leader. ',isFree?'success':'error');
+}
+function gangConfirmUser(){
+  if(['complete','tight_complete','failure','problem_hold','emergency_stop'].includes(gang.phase)) return;
+  let ok=true,msg='';
+  switch(gang.phase){
+    case 'place_hyd': ok=hydraulicsVisible()&&assemblySeated();msg='Place the hydraulic jack first.';break;
+    case 'connect_bleed': ok=s.hosesConnected&&s.pistonZero;msg='Connect the hose and complete bleed / piston zero first.';break;
+    case 'backoff_hyd': ok=s.cylThreadTravel>0.2;msg='Unscrew the hydraulic jack with the tommy bar before confirming.';break;
+    case 'pressure_release': ok=gang.nutTested&&gang.lastNutFree&&nutReleaseReached();msg='Keep testing the nut while pressure rises. Confirm only after you have physically detected free movement.';break;
+    case 'loosen_nut': ok=s.threadTravel>0.2;msg='Unscrew the nut before confirming.';break;
+    case 'pressure_lower': ok=gang.nutTested&&!gang.lastNutFree&&s.nutCoverLocked;msg='Keep testing the nut with the tommy bar. Signal only after you have confirmed that it has tightened.';break;
+    case 'signal_tight': ok=gang.nutTested&&!gang.lastNutFree;msg='Try the nut and signal only after confirming that it is tight.';break;
+    case 'repressurize': ok=gang.nutTested&&gang.lastNutFree&&nutReleaseReached();msg='Keep testing the nut during repressurisation. Confirm only after free movement is physically detected.';break;
+    case 'loosen_more': ok=s.threadTravel>gang.loosenBaseline+0.2;msg='Unscrew the nut further before confirming.';break;
+    case 'zero_check': ok=gang.nutTested&&gang.lastNutFree&&s.pressure===0;msg='At 0 bar, move the nut and confirm that it is free.';break;
+    case 'remove_hose': ok=!s.hosesConnected;msg='Remove the hydraulic hose first.';break;
+    case 'remove_hyd': ok=hydraulicsRemoved();msg=sequenceFailure()||'Remove the hydraulic jack first.';break;
+    case 'remove_nut': ok=nutRemoved();msg='Remove the nut first.';break;
+    case 'tight_place_nut': ok=nutVisible()&&s.threadTravel<=0.05;msg='Place the nut fully onto the stud first.';break;
+    case 'tight_place_hyd': ok=hydraulicsVisible()&&assemblySeated();msg='Place the hydraulic jack fully onto the stud first.';break;
+    case 'tight_connect_bleed': ok=s.hosesConnected&&s.pistonZero;msg='Connect the hoses and complete bleed / piston zero first.';break;
+    case 'tight_pressure': ok=Math.abs(s.pressure-s.releasePressure)<=1;msg='Wait until the common pressure reaches exactly 2200 bar before confirming.';break;
+    case 'tighten_nut': ok=s.tightenCompleted&&pressureGap()<=0.05;msg='Tighten the nut until the complete 1.50 mm clearance is taken up.';break;
+    case 'tight_pressure_lower': ok=s.pressure<=0.01;msg='Wait until the common pressure reaches 0 bar before confirming.';break;
+    case 'tight_remove_hose': ok=!s.hosesConnected;msg='Disconnect the hydraulic hoses first.';break;
+    case 'tight_remove_hyd': ok=hydraulicsRemoved();msg='Remove the hydraulic jack first.';break;
+  }
+  if(!ok){gangSetMessage(msg,'error');return;}
+  if(gang.phase==='pressure_lower'){
+    // The operator's hand-up signal stops the common pressure reduction immediately.
+    // The Team Leader then increases pressure again until the nut is released.
+    gang.pressureToken++;
+    gang.recoveryCount++;
+    gangSetMessage('Tight-nut signal received. Pressure reduction stopped. The Team Leader is increasing pressure again.','error');
+    gangSetPhase('repressurize');
+    return;
+  }
+  gang.confirmed[0]=true;gang.status[0]='CONFIRMED';
+  gangSetMessage(isTightenWorkflow()?'Hand-up signal received from Hydraulic Jack No. 1. Waiting for the other seven operators.':'Hand-up signal received from Hydraulic Jack No. 1. The common pressure continues rising until every hydraulic-jack operator has confirmed.','success');
+  if(gang.phase==='signal_tight'){
+    for(let i=1;i<8;i++){gang.confirmed[i]=true;gang.status[i]='CONFIRMED';}
+  }
+  if(gang.phase==='loosen_more'||gang.phase==='zero_check'){
+    for(let i=1;i<8;i++){gang.confirmed[i]=true;gang.status[i]='CONFIRMED';}
+  }
+  gangTryAdvance();
+}
+function gangAllConfirmed(){return gang.confirmed.every(Boolean);}
+function gangTryAdvance(){
+  if(!gangAllConfirmed()) return;
+  switch(gang.phase){
+    case 'place_hyd': gangSetPhase('connect_bleed');break;
+    case 'connect_bleed': gangSetPhase('backoff_hyd');break;
+    case 'backoff_hyd': gangSetPhase('pressure_release');break;
+    case 'pressure_release': gangSetPhase('loosen_nut');break;
+    case 'loosen_nut': gangSetPhase('pressure_lower');break;
+    case 'signal_tight': gang.recoveryCount++;gangSetPhase('repressurize');break;
+    case 'repressurize': s.nutCoverLocked=false;gangSetPhase('loosen_more');break;
+    case 'loosen_more': s.nutCoverLocked=false;gangSetPhase('pressure_lower');break;
+    case 'zero_check': gangSetPhase('remove_hose');break;
+    case 'remove_hose': gangSetPhase('remove_hyd');break;
+    case 'remove_hyd': gangSetPhase('remove_nut');break;
+    case 'remove_nut': gangSetPhase('complete');break;
+    case 'tight_place_nut': gangSetPhase('tight_place_hyd');break;
+    case 'tight_place_hyd': gangSetPhase('tight_connect_bleed');break;
+    case 'tight_connect_bleed': gangSetPhase('tight_pressure');break;
+    case 'tight_pressure': gangSetPhase('tighten_nut');break;
+    case 'tighten_nut': gangSetPhase('tight_pressure_lower');break;
+    case 'tight_pressure_lower': gangSetPhase('tight_remove_hose');break;
+    case 'tight_remove_hose': gangSetPhase('tight_remove_hyd');break;
+    case 'tight_remove_hyd': gangSetPhase('tight_complete');break;
+  }
+}
+function gangStartPressure(direction,kind){
+  const token=++gang.pressureToken;
+  let last=performance.now();
+  const synchronizedReleaseRise=direction>0 && (kind==='release' || kind==='repressurize');
+  const target=kind==='tighten' ? s.releasePressure : (direction>0 ? s.pumpMaxPressure : 0);
+
+  function scheduleVirtualHandUp(i){
+    if(i<=0 || i>=8 || gang.releaseSignalScheduled[i] || gang.confirmed[i]) return;
+    gang.releaseSignalScheduled[i]=true;
+    gang.status[i]='FREE';
+    const phaseAtSchedule=gang.phase;
+    const delay=260+i*85;
+    const t=setTimeout(()=>{
+      if(gang.phase!==phaseAtSchedule || gang.confirmed[i]) return;
+      if(s.pressure+0.01<gang.releasePressures[i]){
+        gang.releaseSignalScheduled[i]=false;
+        gang.status[i]='TESTING';
+        updateGangPanel();
+        return;
+      }
+      gang.confirmed[i]=true;
+      gang.status[i]='CONFIRMED';
+      updateGangPanel();
+      gangTryAdvance();
+    },delay);
+    gang.timers.push(t);
+  }
+
+  function updateVirtualReleaseChecks(){
+    for(let i=1;i<8;i++){
+      if(gang.confirmed[i]) continue;
+      if(s.pressure>=gang.releasePressures[i]) scheduleVirtualHandUp(i);
+      else gang.status[i]='TESTING';
+    }
+  }
+
+  function frame(ts){
+    if(token!==gang.pressureToken || !s.commandMode) return;
+    const dt=Math.min(120,Math.max(0,ts-last));last=ts;
+    const rate=direction>0?pressureRiseRateAt(s.pressure):s.pressureFallRate;
+    const next=direction>0?Math.min(target,s.pressure+rate*dt/1000):Math.max(target,s.pressure-rate*dt/1000);
+    setPressure(next);
+
+    if(synchronizedReleaseRise){
+      // Every jack has a different hidden release point. The seven simulated operators
+      // test and signal independently. The trainee must physically test Jack 1 and press
+      // the hand-up button. Pressure keeps rising until all eight confirmations arrive.
+      if(s.pressure>=gang.releasePressures[0]) s.nutCoverLocked=false;
+      updateVirtualReleaseChecks();
+      gangTryAdvance();
+      if(token!==gang.pressureToken) return;
+      if(s.pressure>=target-0.01){
+        setPressure(target);
+        gangSetMessage('Maximum pressure reached. Hold pressure and continue the tommy-bar checks. The sequence cannot advance until all eight operators have confirmed free nut movement.','error');
+        updateGangPanel();
+        return;
+      }
+      requestAnimationFrame(frame);
+      return;
+    }
+
+    if(kind==='tighten'){
+      for(let i=0;i<8;i++) gang.status[i]='PRESSURISING';
+      if(s.pressure>=target-0.01){
+        setPressure(target);
+        gang.pressureToken++;
+        for(let i=1;i<8;i++){gang.confirmed[i]=true;gang.status[i]='CONFIRMED';}
+        gang.status[0]='READY';
+        gang.actionSeen=true;
+        gangSetMessage('Common pressure has reached exactly 2200 bar. Verify the pressure and press CONFIRM — HAND UP to receive the next Team Leader command.','success');
+        updateGangPanel();
+        return;
+      }
+      requestAnimationFrame(frame);
+      return;
+    }
+
+    if(kind==='tightenLower'){
+      for(let i=0;i<8;i++) gang.status[i]='PRESSURE DOWN';
+      if(s.pressure<=0.01){
+        setPressure(0);
+        gang.pressureToken++;
+        for(let i=1;i<8;i++){gang.confirmed[i]=true;gang.status[i]='CONFIRMED';}
+        gang.status[0]='READY';
+        gang.actionSeen=true;
+        gangSetMessage('Common pressure has reached 0 bar. Verify zero pressure and press CONFIRM — HAND UP to receive the next Team Leader command.','success');
+        updateGangPanel();
+        return;
+      }
+      requestAnimationFrame(frame);
+      return;
+    }
+
+    if(kind==='lower'){
+      for(let i=1;i<8;i++) gang.status[i]='FREE CHECK';
+      if(s.internalJam){gangSetPhase('failure');return;}
+      if(s.pressure<=0.01){
+        s.pressure=0;
+        if(s.nutCoverLocked){
+          // Do not bypass the trainee's physical check. Keep the sequence at Step 6
+          // until the operator moves the tommy bar, detects the tight nut and signals.
+          gang.pressureToken++;
+          gangSetMessage('Pressure has reached 0 bar, but the nut is mechanically tight. Check it with the tommy bar and press NUT HAS TIGHTENED — HAND UP.','error');
+          updateGangPanel();
+          return;
+        }
+        for(let i=1;i<8;i++){gang.confirmed[i]=true;gang.status[i]='CONFIRMED';}
+        gangSetPhase('zero_check');return;
+      }
+    }
+    if((direction>0 && s.pressure>=target-0.01)||(direction<0&&s.pressure<=target+0.01)){
+      updateGangPanel();return;
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+function gangHydAction(){
+  if(gang.phase==='place_hyd' || gang.phase==='tight_place_hyd'){
+    if(hydraulicsRemoved()){gang.actionSeen=true;startHydraulicPlacement();gangSetMessage('Hydraulic jack is being placed and screwed down. Confirm after it bears on the cover.');}
+    else gangSetMessage('Hydraulic jack is already fitted. Confirm after checking that it is seated.');
+  }else if(gang.phase==='remove_hyd' || gang.phase==='tight_remove_hyd'){
+    if(!hydraulicsReadyToRemove()){gangSetMessage(sequenceFailure()||'Hydraulic-jack removal is not mechanically permitted.','error');return;}
+    gang.actionSeen=true;startHydraulicUnscrew();gangSetMessage('Hydraulic jack removal in progress. Confirm after it clears the stud.');
+  }else gangSetMessage('No Team Leader command has been issued for the hydraulic jack.','error');
+}
+function gangHoseAction(){
+  if(gang.phase==='connect_bleed' || gang.phase==='tight_connect_bleed'){
+    if(s.pressure!==0||!hydraulicsVisible()||!assemblySeated()){gangSetMessage('The hydraulic jack must be fully seated at 0 bar before hose connection and bleeding.','error');return;}
+    s.hosesConnected=true;s.pistonZero=true;s.pressureBlocked=false;gang.actionSeen=true;update();draw();gangSetMessage('Hydraulic hose connected. Bleed / piston zero completed. Press CONFIRM — HAND UP.','success');
+  }else if(gang.phase==='remove_hose' || gang.phase==='tight_remove_hose'){
+    if(s.pressure!==0){gangSetMessage('Pressure must be 0 bar before removing the hose.','error');return;}
+    s.hosesConnected=false;s.pistonZero=false;gang.actionSeen=true;update();draw();gangSetMessage('Hydraulic hoses disconnected. Press CONFIRM — HAND UP.','success');
+  }else gangSetMessage('No Team Leader command has been issued for the hydraulic hose.','error');
+}
+function gangNutAction(){
+  if(gang.phase==='tight_place_nut'){
+    if(!nutPlacementReady()){gangSetMessage('Nut placement is not mechanically permitted in the present condition.','error');return;}
+    gang.actionSeen=true;startNutPlacement();gangSetMessage('Nut placement in progress. Confirm after it is fully run down to the contact face.');
+  }else if(gang.phase==='remove_nut'){
+    if(!nutReadyToRemove()){gangSetMessage(sequenceFailure()||'Nut removal is not mechanically permitted.','error');return;}
+    gang.actionSeen=true;startNutUnscrew();gangSetMessage('Nut removal in progress. Confirm after it clears the stud.');
+  }else gangSetMessage('No Team Leader command has been issued for nut placement/removal. Manual tommy-bar movement is performed directly on the drawing.','error');
+}
+function updateGangPanel(){
+  if(!ge.panel) return;
+  const d=gangPhaseData[gang.phase]||gangPhaseData.failure;
+  ge.pressure.textContent=s.pressure.toFixed(0)+' bar';
+  if(ge.title) ge.title.textContent='TEAM LEADER · 8 HYDRAULIC JACKS · '+(isTightenWorkflow()?'SCREWING':'UNSCREWING');
+  if(ge.loosenWorkflow) ge.loosenWorkflow.classList.toggle('active',!isTightenWorkflow());
+  if(ge.tightenWorkflow) ge.tightenWorkflow.classList.toggle('active',isTightenWorkflow());
+  teamVoiceUpdateControls();
+  ge.command.innerHTML='<strong>COMMAND '+d.no+' · '+d.title+'</strong>'+d.cmd;
+  ge.grid.innerHTML=gang.status.map((st,i)=>{
+    const cls=st==='CONFIRMED'||st==='FREE'?'ok':(st==='ALERT'||st==='TIGHT'?'alert':'work');
+    return '<div class="jackStatus '+cls+'"><b>JACK '+(i+1)+(i===0?' · YOU':'')+'</b>'+st+'</div>';
+  }).join('');
+  ge.message.className='gangMessage'+(gang.messageClass?' '+gang.messageClass:'');ge.message.textContent=gang.message;
+  ge.hyd.disabled=!['place_hyd','remove_hyd','tight_place_hyd','tight_remove_hyd'].includes(gang.phase);
+  ge.hose.disabled=!['connect_bleed','remove_hose','tight_connect_bleed','tight_remove_hose'].includes(gang.phase);
+  ge.nut.disabled=!['remove_nut','tight_place_nut'].includes(gang.phase);
+  const safetyTerminal=['complete','tight_complete','failure','problem_hold','emergency_stop'].includes(gang.phase);
+  if(ge.reportProblem) ge.reportProblem.disabled=safetyTerminal;
+  if(ge.emergencyStop) ge.emergencyStop.disabled=safetyTerminal;
+  ge.hyd.innerHTML=['remove_hyd','tight_remove_hyd'].includes(gang.phase)?'REMOVE<br>HYDRAULIC JACK':'PLACE<br>HYDRAULIC JACK';
+  ge.hose.innerHTML=(gang.phase==='remove_hose'||gang.phase==='tight_remove_hose')?'DISCONNECT<br>HYDRAULIC HOSES':'CONNECT HOSES<br>/ BLEED';
+  ge.nut.innerHTML=gang.phase==='remove_nut'?'REMOVE<br>NUT':(gang.phase==='tight_place_nut'?'PLACE<br>NUT':'PLACE / REMOVE<br>NUT');
+  let label='CONFIRM — HAND UP',alert=false;
+  if(gang.phase==='pressure_release') label=(gang.nutTested&&gang.lastNutFree&&nutReleaseReached())?'NUT MOVES FREELY — HAND UP':'TEST NUT — THEN HAND UP';
+  if(gang.phase==='pressure_lower'){
+    label='NUT HAS TIGHTENED — HAND UP';
+    alert=gang.nutTested&&gang.lastNutFree===false;
+  }
+  if(gang.phase==='signal_tight'){label='NUT HAS TIGHTENED — HAND UP';alert=true;}
+  if(gang.phase==='repressurize') label=(gang.nutTested&&gang.lastNutFree&&nutReleaseReached())?'NUT MOVES FREELY AGAIN — HAND UP':'TEST NUT AGAIN — THEN HAND UP';
+  if(gang.phase==='zero_check') label='NUT REMAINED FREE — HAND UP';
+  if(gang.phase==='tight_pressure') label='CONFIRM 2200 BAR — HAND UP';
+  if(gang.phase==='tight_pressure_lower') label='CONFIRM 0 BAR — HAND UP';
+  ge.confirm.textContent=label;ge.confirm.classList.toggle('alert',alert);ge.confirm.classList.toggle('ready',!gang.confirmed[0]);
+  const pressureLowerSignalReady=gang.phase==='pressure_lower'&&gang.nutTested&&gang.lastNutFree===false&&s.nutCoverLocked;
+  const releaseCheckReady=(gang.phase==='pressure_release'||gang.phase==='repressurize')&&gang.nutTested&&gang.lastNutFree===true&&nutReleaseReached();
+  const tightPressureReady=gang.phase!=='tight_pressure'||Math.abs(s.pressure-s.releasePressure)<=1;
+  const tightPressureLowerReady=gang.phase!=='tight_pressure_lower'||s.pressure<=0.01;
+  ge.confirm.disabled=gang.confirmed[0]||['complete','tight_complete','failure','problem_hold','emergency_stop'].includes(gang.phase)||!tightPressureReady||!tightPressureLowerReady||(gang.phase==='pressure_lower'&&!pressureLowerSignalReady)||((gang.phase==='pressure_release'||gang.phase==='repressurize')&&!releaseCheckReady);
+  const holesH=hydraulicBackoffHoleCount().toFixed(1).replace('.0','');
+  const holesN=nutLoosenHoleCount().toFixed(1).replace('.0','');
+  if(gang.phase==='backoff_hyd') ge.message.textContent=gang.message+' Hydraulic jack: '+holesH+' holes.';
+  if(gang.phase==='loosen_nut'||gang.phase==='loosen_more') ge.message.textContent=gang.message+' Nut: '+holesN+' holes.';
+  if(gang.phase==='pressure_release'||gang.phase==='repressurize'){
+    const confirmedCount=gang.confirmed.filter(Boolean).length;
+    if(gang.confirmed[0]){
+      ge.message.textContent='Your hand-up signal has been received. Confirmed: '+confirmedCount+'/8. The common pressure continues rising until all eight operators have confirmed free nut movement.';
+      ge.message.className='gangMessage success';
+    }else if(gang.nutTested&&gang.lastNutFree===true){
+      ge.message.textContent='Nut movement detected: FREE at '+s.pressure.toFixed(0)+' bar. Press the hand-up confirmation. Confirmed so far: '+confirmedCount+'/8.';
+      ge.message.className='gangMessage success';
+    }else if(gang.nutTested&&gang.lastNutFree===false){
+      ge.message.textContent='Your nut is still TIGHT at '+s.pressure.toFixed(0)+' bar. Keep testing with the tommy bar while pressure rises. Confirmed so far: '+confirmedCount+'/8.';
+      ge.message.className='gangMessage error';
+    }else{
+      ge.message.textContent='Pressure is increasing: '+s.pressure.toFixed(0)+' bar. Release pressure differs between jacks. Repeatedly test your nut with the tommy bar. Confirmed so far: '+confirmedCount+'/8.';
+    }
+  }
+  if(gang.phase==='pressure_lower'){
+    if(gang.nutTested&&gang.lastNutFree===false){
+      ge.message.textContent='Nut test result: TIGHT at '+s.pressure.toFixed(0)+' bar. Press NUT HAS TIGHTENED — HAND UP to stop pressure reduction and alert the Team Leader.';
+      ge.message.className='gangMessage error';
+    }else if(gang.nutTested&&gang.lastNutFree===true){
+      ge.message.textContent='Nut test result: FREE at '+s.pressure.toFixed(0)+' bar. Continue moving it with the tommy bar as pressure falls.';
+      ge.message.className='gangMessage success';
+    }else{
+      ge.message.textContent='Pressure lowering in progress. Move the nut repeatedly with the tommy bar to check that it remains free. Current pressure: '+s.pressure.toFixed(0)+' bar.';
+    }
+  }
+}
+function startSelectedGangWorkflow(mode){
+  gangClearTimers();
+  teamVoiceStop();
+  gang.lastSpokenPhase=null;
+  applyWorkflowReset(mode);
+  gang.recoveryCount=0;
+  gangGenerateReleasePressures();
+  gangSetPhase(mode==='tighten'?'tight_place_nut':'place_hyd');
+}
+if(ge.loosenWorkflow)ge.loosenWorkflow.onclick=()=>startSelectedGangWorkflow('loosen');
+if(ge.tightenWorkflow)ge.tightenWorkflow.onclick=()=>startSelectedGangWorkflow('tighten');
+if(ge.voiceToggle)ge.voiceToggle.onclick=teamVoiceToggle;
+if(ge.voiceRepeat)ge.voiceRepeat.onclick=teamVoiceRepeat;
+if(ge.viewDown)ge.viewDown.onclick=()=>changeDisplayScale(-1);
+if(ge.viewUp)ge.viewUp.onclick=()=>changeDisplayScale(1);
+if(teamVoiceSupported() && window.speechSynthesis.addEventListener) window.speechSynthesis.addEventListener('voiceschanged',teamVoiceUpdateControls);
+if(ge.hyd)ge.hyd.onclick=gangHydAction;
+if(ge.hose)ge.hose.onclick=gangHoseAction;
+if(ge.nut)ge.nut.onclick=gangNutAction;
+if(ge.confirm)ge.confirm.onclick=gangConfirmUser;
+if(ge.reportProblem)ge.reportProblem.onclick=()=>gangSafetyStop('problem');
+if(ge.emergencyStop)ge.emergencyStop.onclick=()=>gangSafetyStop('emergency');
+
+e.pressure.addEventListener('input',ev=>{ev.target.value=s.pressure;});if(e.b2000)e.b2000.onclick=()=>{};if(e.b2200)e.b2200.onclick=()=>{};if(e.b0)e.b0.onclick=()=>{};e.reset.onclick=()=>startSelectedGangWorkflow(s.workflowMode||'loosen');
+const doConnectHoses=()=>{const req=isTightenWorkflow()?3:2;if(!stepAllowed(req))return;if(s.pressure===0&&hydraulicsVisible())s.hosesConnected=true;if(canBuildPressure())s.pressureBlocked=false;update();draw();};
+const doBleedZero=()=>{const req=isTightenWorkflow()?4:3;if(!stepAllowed(req))return;if(s.pressure===0&&s.hosesConnected&&assemblySeated()){s.pistonZero=true;s.pressureBlocked=false;}update();draw();};
+const doDisconnectHoses=()=>{cancelAnim();if(!stepAllowed(8)||s.pressure!==0||!s.hosesConnected)return;s.hosesConnected=false;s.pistonZero=false;update();draw();};
+if(e.helpBtn)e.helpBtn.onclick=()=>{s.help=!s.help;cancelAnim();update();draw();};
+if(e.magnifierToggleBtn)e.magnifierToggleBtn.onclick=()=>{s.magnifierEnabled=!s.magnifierEnabled;s.draggingMagnifier=false;canvas.classList.remove('dragging');update();draw();};
+if(e.connectHoses)e.connectHoses.onclick=doConnectHoses;if(e.bleedZero)e.bleedZero.onclick=doBleedZero;if(e.disconnectHoses)e.disconnectHoses.onclick=doDisconnectHoses;
+if(e.scPlaceNut)e.scPlaceNut.onclick=()=>{if(isTightenWorkflow() && stepAllowed(1))startNutPlacement();};if(e.scPlaceHyd)e.scPlaceHyd.onclick=()=>{if(stepAllowed(isTightenWorkflow()?2:1))startHydraulicPlacement();};if(e.scConnect)e.scConnect.onclick=doConnectHoses;if(e.scBleed)e.scBleed.onclick=doBleedZero;
+if(e.scBackoffHyd)e.scBackoffHyd.onclick=()=>{if(!isTightenWorkflow() && stepAllowed(4)){s.cylOperation=1;update();draw();}};
+if(e.scLoosenNut5)e.scLoosenNut5.onclick=()=>{if(stepAllowed(6)){s.operation=isTightenWorkflow()?-1:1;if(isTightenWorkflow())reindexHandle(-1,false);update();draw();}};
+if(e.scDisconnect)e.scDisconnect.onclick=doDisconnectHoses;
+if(e.scUnscrewHyd)e.scUnscrewHyd.onclick=()=>{
+  if(!stepAllowed(isTightenWorkflow()?8:9)) return;
+  if(!hydraulicsReadyToRemove()){
+    if(e.scenarioStatus){
+      e.scenarioStatus.className='status locked';
+      e.scenarioStatus.textContent=sequenceFailure() || 'Step 9 is not ready: complete Step 7 at 0 bar and disconnect the high-pressure hoses.';
+    }
+    draw();
+    return;
+  }
+  startHydraulicUnscrew();
+};
+if(e.scUnscrewNut)e.scUnscrewNut.onclick=()=>{if(stepAllowed(10))startNutUnscrew();};
+bindHoldButton(e.scPumpStart,()=>startPressureHold(1));bindHoldButton(e.scPumpStop,()=>startPressureHold(-1));if(e.modeLoosenBtn)e.modeLoosenBtn.onclick=()=>startSelectedGangWorkflow('loosen');if(e.modeTightenBtn)e.modeTightenBtn.onclick=()=>startSelectedGangWorkflow('tighten');e.unscrew.onclick=()=>startSelectedGangWorkflow('loosen');e.screw.onclick=()=>startSelectedGangWorkflow('tighten');if(e.strokeUp)e.strokeUp.onclick=()=>{};if(e.strokeDown)e.strokeDown.onclick=()=>{};if(e.reindex)e.reindex.onclick=()=>{};e.play.addEventListener('input',ev=>{s.nutPlay=clamp(Number(ev.target.value)||0,0,freeGap());update();draw();});e.play0.onclick=()=>{s.nutPlay=0;update();draw();};e.playMax.onclick=()=>{s.nutPlay=freeGap();update();draw();};e.pitch.addEventListener('input',ev=>{s.pitch=Number(ev.target.value)||6;update();draw();});canvas.addEventListener('pointerdown',begin);window.addEventListener('pointermove',move);window.addEventListener('pointerup',ev=>{if(s.draggingCylinder||s.draggingHandle||s.draggingNut||s.draggingMagnifier){cancelAnim();end(ev);}});window.addEventListener('pointercancel',ev=>{if(s.draggingCylinder||s.draggingHandle||s.draggingNut||s.draggingMagnifier){cancelAnim();end(ev);}});window.addEventListener('resize',resize);applyDisplayScale();update();resize();startSelectedGangWorkflow('loosen');
+})();
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js').catch(() => {});
+  });
+}
+</script>
+
+</body>
+</html>

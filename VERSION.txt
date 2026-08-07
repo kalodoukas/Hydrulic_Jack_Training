@@ -1,0 +1,3 @@
+Hydraulic_Jack_127_Training
+GitHub Pages / iOS PWA package
+Build date: 2026-08-07
