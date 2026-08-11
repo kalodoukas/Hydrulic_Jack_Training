@@ -1,3 +1,5 @@
-Hydraulic_Jack_127_Training
-GitHub Pages / iOS PWA package
-Build date: 2026-08-07
+Cylinder Cover Hydraulic Jack
+Version: V171
+Build date: 2026-08-11
+PWA target: GitHub Pages / HTTPS
+Signature: Ed25519 detached signature over SHA256SUMS.txt
